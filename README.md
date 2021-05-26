@@ -5,12 +5,12 @@ New repository with coding evolution
 Using the state of the art packages
 
 
-To become a great Data Scientist some skills are required:
+###To become a great Data Scientist some skills are required:
 *I . Mathematics especially Statistics and Probability
 *II . Python & R
 *III . SQL
 
-Then comes 
+###Then comes 
 *IV. Machine learning
 *V. Analytics Mindset, Solving business problems.
 
