@@ -20,3 +20,15 @@ Then comes
 >V. Analytics Mindset, Solving business problems.
 
 Here we will try to see all of these aspects.
+
+
+
+***
+Data Science & Artificial Intelligence Use Cases:
+
+Data analysis 📊
+Time series 📈
+Machine Learning :electron:
+Natural Language Processing 📰
+Computer Vision 👁️
+Web Development: sitraka.fr
