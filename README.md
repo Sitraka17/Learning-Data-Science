@@ -32,3 +32,10 @@ Machine Learning :electron:
 Natural Language Processing 📰
 Computer Vision 👁️
 Web Development: sitraka.fr
+
+
+
+Great Databases: 
+Google Dataset Search 👉🏽?🏼https://datasetsearch.research.google...​
+Kaggle Datasets 👉🏽?🏼https://www.kaggle.com/data 
+Economics 👉🏽 https://fred.stlouisfed.org 
