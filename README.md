@@ -24,7 +24,7 @@ Here we will try to see all of these aspects.
 
 
 ***
-Data Science & Artificial Intelligence Use Cases:
+<a>Data Science & Artificial Intelligence Use Cases:</a>
 
 Data analysis 📊
 Time series 📈
