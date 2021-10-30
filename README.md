@@ -40,4 +40,6 @@ Great Databases:
 
 >Kaggle Datasets 👉🏽?🏼https://www.kaggle.com/data 
 
->Economics 👉🏽 https://fred.stlouisfed.org 
+>Economics 💸 https://fred.stlouisfed.org 
+
+>GIS 🧭 https://www.openstreetmap.fr/
