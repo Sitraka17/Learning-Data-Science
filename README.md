@@ -43,3 +43,7 @@ Great Databases:
 >Economics 💸 https://fred.stlouisfed.org 
 
 >GIS 🧭 https://www.openstreetmap.fr/
+
+
+*** 
+Cool Press Article: https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century 
