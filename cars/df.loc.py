@@ -20,3 +20,8 @@ print(cars[0:3])
 
 # Print out fourth, fifth and sixth observation
 print(cars[3:6])
+
+# Print out observation for Japan
+print(cars.loc['JPN'])
+# Print out observations for Australia and Egypt
+print(cars.loc[['AUS','EG']])
