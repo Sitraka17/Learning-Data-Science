@@ -2,11 +2,12 @@
 import pandas as pd
 cars = pd.read_csv('cars.csv', index_col = 0)
 
-# Print out country column as Pandas Series
+# Print out country column as Pandas Series [  ]
 print(cars["country"])
 
-# Print out country column as Pandas DataFrame
+# Print out country column as Pandas DataFrame  [[   ]]
 print(cars[['country']])
 
 # Print out DataFrame with country and drives_right columns
 print(cars[[ "country", "drives_right"]])
+
