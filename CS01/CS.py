@@ -6,5 +6,5 @@ Review and Reflect
 
 Searching for Solutions
 
-seven bridges and develop a systematic approach to solve this puzzle.
+seven bridges to develop a *systematic* approach to solve this puzzle.
 Although it will seem impractical, this type of approach leverages the core strength of computers — quickly and tirelessly doing many tasks.
