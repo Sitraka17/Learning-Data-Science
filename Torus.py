@@ -26,3 +26,6 @@ ax2.plot_surface(x, y, z, rstride=5, cstride=5, color='k', edgecolors='w')
 ax2.view_init(0, 0)
 ax2.set_xticks([])
 plt.show()
+
+
+# SOURCE : https://en.wikipedia.org/wiki/Torus
