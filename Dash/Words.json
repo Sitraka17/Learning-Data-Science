@@ -1,0 +1,10 @@
+{
+    "type": "categorical_histogram",
+    "maxValues": 10,
+    "groupOthers": false,
+    "column": {
+        "name": "Marque",
+        "type": "CATEGORICAL"
+    },
+    "id": "c78SqRg"
+}
