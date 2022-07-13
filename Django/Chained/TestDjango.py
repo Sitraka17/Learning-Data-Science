@@ -1,2 +1,0 @@
-mkdir django_projects
-cd django_projects
