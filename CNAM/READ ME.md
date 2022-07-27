@@ -1,4 +1,4 @@
-# connaissance scientifique, compétences techniques, curiosité, rigueur, l’ingénieur informatique spécialisé dans les techniques du Big Data et de l’Intelligence Artificielle doit :
+# Connaissance scientifique, compétences techniques, curiosité, rigueur, l’ingénieur informatique spécialisé dans les techniques du Big Data et de l’Intelligence Artificielle doit :
 >
  - Maîtriser les techniques de collecte de données, de fouilles de données dans le but de pouvoir analyser des données complexes et de grande dimension.
  -  Maîtriser des langages et des logiciels de statistique et de mathématiques appliquées et pouvoir communiquer les résultats d'analyses statistiques.
@@ -9,3 +9,5 @@
  - Savoir déployer des outils d’apprentissage dans le contexte actuel du big data : grandes masses de données, données / labels bruitées, données manquantes.
  - Maitriser des outils analytiques tel que SAS ou R
  - Pouvoir utiliser des langages informatiques (C++, R, Python, ...)
+
+[Link text Here](https://formation.cnam.fr/rechercher-par-discipline/diplome-d-ingenieur-specialite-informatique-big-data-et-intelligence-artificielle-974808.kjsp?RF=newcat_themes)
