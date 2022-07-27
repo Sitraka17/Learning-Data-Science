@@ -48,5 +48,6 @@ Great Databases:
 
 
 *** 
-Cool Press Article: https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century 
-Is this Data Scientist still the sexiest job of the XXIst century ? 
+> Cool Press Article: https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century 
+
+> Is this Data Scientist still the sexiest job of the XXIst century ? : https://www.dominodatalab.com/blog/data-scientist-still-the-sexiest-job-of-the-21st-century#:~:text=Back%20in%202012%2C%20Harvard%20Business,Authors%20Thomas%20Davenport%20and%20D.J. 
