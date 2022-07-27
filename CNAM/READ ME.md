@@ -10,4 +10,4 @@
  - Maitriser des outils analytiques tel que SAS ou R
  - Pouvoir utiliser des langages informatiques (C++, R, Python, ...)
 
-[Link text Here](https://formation.cnam.fr/rechercher-par-discipline/diplome-d-ingenieur-specialite-informatique-big-data-et-intelligence-artificielle-974808.kjsp?RF=newcat_themes)
+[Formation CNAM](https://formation.cnam.fr/rechercher-par-discipline/diplome-d-ingenieur-specialite-informatique-big-data-et-intelligence-artificielle-974808.kjsp?RF=newcat_themes)
