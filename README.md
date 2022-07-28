@@ -40,8 +40,6 @@ Great Databases:
 
 >Kaggle Datasets 👉🏽?🏼https://www.kaggle.com/data 
 
-> [French Economics DB](https://opendata.caissedesdepots.fr/pages/pagehomerefonte/ )
-  
 
 >US Economics 💸 https://fred.stlouisfed.org 
 
@@ -55,3 +53,5 @@ Great Databases:
 > The Seminal Article of Data Science job rush (2012):  https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century 
 
 > Is Data Scientist Still the Sexiest Job of the 21st Century? (2022) : https://hbr.org/2022/07/is-data-scientist-still-the-sexiest-job-of-the-21st-century
+
+> 🇫🇷 [French Economics DB](https://opendata.caissedesdepots.fr/pages/pagehomerefonte/ )
