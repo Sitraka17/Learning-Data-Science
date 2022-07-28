@@ -40,11 +40,15 @@ Great Databases:
 
 >Kaggle Datasets 👉🏽?🏼https://www.kaggle.com/data 
 
->Economics 💸 https://fred.stlouisfed.org 
+>[French Economics DB](https://opendata.caissedesdepots.fr/pages/pagehomerefonte/ )
+  
+
+>US Economics 💸 https://fred.stlouisfed.org 
 
 >GIS 🧭 https://www.openstreetmap.fr/
 
 >All DB: https://dbdb.io/ 
+
 
 
 *** 
