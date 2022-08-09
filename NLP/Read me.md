@@ -4,3 +4,6 @@ Challenges in natural language processing frequently involve speech recognition,
 
 
 source code: https://en.wikipedia.org/wiki/Natural_language_processing
+
+
+Not NLP but a little bit of it: https://labs.openai.com/ 
