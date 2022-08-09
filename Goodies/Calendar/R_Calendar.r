@@ -15,3 +15,9 @@ calendR(year = 2025,
                          126, 257, 300, 342),
         special.col = "lightblue",            # Color of the specified days
         low.col = "white")                    # Background color of the rest of the days
+
+
+
+
+
+#Source of Code: https://r-coder.com/calendar-plot-r/ 
