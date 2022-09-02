@@ -5,9 +5,9 @@ What is the purpose of Git ?
 
 
 
-What is Git?
+> What is Git?
 Git is a free, open-source version control software. It was created by Linus Torvalds in 2005. This tool is a version control system that was initially developed to work with several developers on the Linux kernel.
 
 This basically means that Git is a content tracker. So Git can be used to store content — and it is mostly used to store code because of the other features it provides.
 
-Real life projects generally have multiple developers working in parallel. So they need a version control system like Git to make sure that there are no code conflicts between them.
+Real life projects generally have **multiple developers working in parallel**. So they need a version control system like Git to make sure that there are no code conflicts between them.
