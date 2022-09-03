@@ -2,8 +2,6 @@ Review and Reflect
 
 -- One algorithm can have many different implementations. 
 
-
-
 Searching for Solutions
 
 seven bridges to develop a *systematic* approach to solve this puzzle.
