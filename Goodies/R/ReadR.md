@@ -7,5 +7,7 @@ Users have created packages to augment the functions of the R language.
 # Site
 http://www.sthda.com/english/articles/40-regression-analysis/167-simple-linear-regression-in-r/
 
+https://www.rexamples.com/14/Sample%28%29
+
 library(tidyverse)
 library(ggpubr)
