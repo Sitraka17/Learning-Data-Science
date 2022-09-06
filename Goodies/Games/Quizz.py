@@ -12,7 +12,7 @@ if answer.lower()=='yes':
         print('Wrong Answer :(')
  
  
-    answer=input('Question 2: Do you follow any author on AskPython? ')
+    answer=input('Question 2: Do you follow any author on Twitter? ')
     if answer.lower()=='yes':
         score += 1
         print('correct')
@@ -30,3 +30,6 @@ print('Thankyou for Playing this small quiz game, you attempted',score,"question
 mark=(score/total_questions)*100
 print('Marks obtained:',mark)
 print('BYE!')
+
+
+#This code was written thanks to AskPython 
