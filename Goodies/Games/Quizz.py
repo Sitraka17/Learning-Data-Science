@@ -33,3 +33,12 @@ print('BYE!')
 
 
 #This code was written thanks to AskPython 
+#How does the else if aka ELIF works ? 
+#Here is an example.
+#if condition:
+    # code
+#elif condition:
+    # code
+    # multiple elif statements
+#else:
+    # default code
