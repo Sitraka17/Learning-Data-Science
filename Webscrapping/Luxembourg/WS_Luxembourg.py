@@ -10,3 +10,6 @@ for spans in soup.findAll('span', attrs={'id' : 'productTitle'}) :
 
 from bs4 import BeautifulSoup as bs
 import requests
+
+url="https://www.amazon.fr/gp/bestsellers/electronics/?ie=UTF8&ref_=sv_cag_1"
+response = requests.get(url)
