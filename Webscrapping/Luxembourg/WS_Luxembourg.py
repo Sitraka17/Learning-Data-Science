@@ -13,3 +13,6 @@ import requests
 
 url="https://www.amazon.fr/gp/bestsellers/electronics/?ie=UTF8&ref_=sv_cag_1"
 response = requests.get(url)
+
+
+html = response.content
