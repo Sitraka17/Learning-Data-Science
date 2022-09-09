@@ -16,3 +16,17 @@ response = requests.get(url)
 
 
 html = response.content
+soup = bs(html, "lxml")
+
+
+titre_articles = soup.find_all("h2", class_="card-title entry-title")
+for titre in titre_articles:
+    print(titre.get_text(strip=True))
+
+import pandas as pd
+categories = soup.find_all("h6", class_="category text-info")
+categories_series = pd.Series(categories)
+categories_series.value_counts()
+
+
+#https://www.data-transitionnumerique.com/beautifulsoup-scraping/
