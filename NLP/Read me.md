@@ -7,3 +7,5 @@ source code: https://en.wikipedia.org/wiki/Natural_language_processing
 
 
 Not NLP but a little bit of it: https://labs.openai.com/ 
+
+https://www.effective-mind-control.com/nlp-for-dummies.html
