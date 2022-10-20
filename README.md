@@ -23,7 +23,8 @@ Here we will try to see all of these aspects.
 
 
 
-***
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
+
 <a>Data Science & Artificial Intelligence Use Cases:</a>
 
 Data analysis 📊
@@ -33,8 +34,7 @@ Natural Language Processing 📰
 Computer Vision 👁️
 Web Development: sitraka.fr
 
-
-***
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
 Great Databases: 
 >Google Dataset Search 👉🏽?🏼https://datasetsearch.research.google...​
 
@@ -50,7 +50,6 @@ Great Databases:
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
 
-*** 
 > [The Seminal Article of Data Science job rush (2012)](https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century )
 
 > [Is Data Scientist Still the Sexiest Job of the 21st Century? (2022)](https://hbr.org/2022/07/is-data-scientist-still-the-sexiest-job-of-the-21st-century)
