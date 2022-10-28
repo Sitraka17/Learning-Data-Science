@@ -57,3 +57,5 @@ Great Databases:
 > [Is Data Scientist Still the Sexiest Job of the 21st Century? (2022)](https://hbr.org/2022/07/is-data-scientist-still-the-sexiest-job-of-the-21st-century)
 
 > 🇫🇷 [French Economics DB](https://opendata.caissedesdepots.fr/pages/pagehomerefonte/ )
+
+> [Label Studio](https://labelstud.io/ )
