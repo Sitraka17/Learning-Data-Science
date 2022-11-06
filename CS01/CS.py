@@ -15,3 +15,5 @@ They let us write down relationships between quantities in a simple, compact way
 They allow us to represent unknown values.
 
 They can help reveal patterns in the information you start with, so that you can find a quick path between that information and the solution you're after.
+  
+  
