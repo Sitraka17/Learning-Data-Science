@@ -9,3 +9,9 @@ source code: https://en.wikipedia.org/wiki/Natural_language_processing
 Not NLP but a little bit of it: https://labs.openai.com/ 
 
 https://www.effective-mind-control.com/nlp-for-dummies.html
+
+
+
+
+
+![alt text]([http://url/to/img.png](https://developers.google.com/static/machine-learning/guides/text-classification/images/Workflow.png))
