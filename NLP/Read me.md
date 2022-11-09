@@ -14,4 +14,4 @@ https://www.effective-mind-control.com/nlp-for-dummies.html
 
 
 
-![alt text]([http://url/to/img.png](https://developers.google.com/static/machine-learning/guides/text-classification/images/Workflow.png))
+![alt text](https://developers.google.com/static/machine-learning/guides/text-classification/images/Workflow.png)
