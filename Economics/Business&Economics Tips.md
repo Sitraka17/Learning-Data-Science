@@ -17,3 +17,7 @@ year      = 2021,
 publisher = "Online",
 url       = "https://aeturrell.github.io/coding-for-economists"
 }
+
+
+
+https://www.welcometothejungle.com/fr/articles/effet-mcnamara-biais
