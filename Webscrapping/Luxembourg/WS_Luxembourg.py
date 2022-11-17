@@ -30,3 +30,4 @@ categories_series.value_counts()
 
 
 #https://www.data-transitionnumerique.com/beautifulsoup-scraping/
+#
