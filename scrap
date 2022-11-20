@@ -1,0 +1,1964 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Sitraka17/Learning-Data-Science/blob/main/scrap\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "X-pW5c3agUmu"
+      },
+      "outputs": [],
+      "source": [
+        "from bs4 import BeautifulSoup\n",
+        "import requests \n",
+        "import urllib.request\n",
+        "from urllib.request import urlopen\n",
+        "\n",
+        "from pydrive.auth import GoogleAuth\n",
+        "from pydrive.drive import GoogleDrive\n",
+        "from google.colab import auth\n",
+        "from oauth2client.client import GoogleCredentials\n",
+        "\n",
+        "import os\n",
+        "import pandas as pd\n",
+        "\n",
+        "from datetime import datetime\n",
+        "import time\n",
+        "from datetime import date\n",
+        "\n",
+        "from urllib.request import Request, urlopen\n",
+        "\n",
+        "import urllib.request\n",
+        "import urllib.error"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "ok9f7v25gWtu"
+      },
+      "outputs": [],
+      "source": [
+        "! pip install htmldate "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "KP6TvaAHgXZd"
+      },
+      "outputs": [],
+      "source": [
+        "from htmldate import find_date"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "3I8JyeOGgXmZ"
+      },
+      "outputs": [],
+      "source": [
+        "# Response [403]\n",
+        "head = {\n",
+        "  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36',\n",
+        "  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',\n",
+        "  'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',\n",
+        "  'Accept-Encoding': 'none',\n",
+        "  'Accept-Language': 'en-US,en;q=0.8',\n",
+        "  'Connection': 'keep-alive',\n",
+        "  'refere': 'https://example.com',\n",
+        "  'cookie': \"\"\"your cookie value ( you can get that from your web page) \"\"\"\n",
+        "}"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "O3mMqlAbgXv9"
+      },
+      "outputs": [],
+      "source": [
+        "def get_page_content(url, head):\n",
+        "  req = Request(url, headers=head)\n",
+        "  return urlopen(req)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "CwwN3mwCgiaq"
+      },
+      "source": [
+        "#**1. Scraping des url des articles**"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "j-JkvDT4gvx5"
+      },
+      "outputs": [],
+      "source": [
+        "def RF_link_recovery(website_link):\n",
+        "  list_href = []\n",
+        "  url = website_link\n",
+        "  r = requests.get(url)\n",
+        "  soup = BeautifulSoup(r.text, 'html.parser')\n",
+        "  urls_html = soup.find_all('a', attrs={'class' : 'fusion-link-wrapper'})\n",
+        "  for link in urls_html:\n",
+        "    list_href.append(link.get('href'))\n",
+        "  page_index = 2\n",
+        "  existing_page = 'Yes' # il existe 18 pages d'articles pour ReclaimFinance, dès que le contenu est vide existing_page = 'No'\n",
+        "  while existing_page == 'Yes':\n",
+        "    url = website_link + \"page/\" + str(page_index) + \"/\" # à partir de la 2ème page website_link se modifie \n",
+        "    r = requests.get(url)\n",
+        "    soup = BeautifulSoup(r.text, 'html.parser') \n",
+        "    urls_html = soup.find_all('a', attrs={'class' : 'fusion-link-wrapper'})\n",
+        "    if urls_html != []:\n",
+        "      page_index += 1\n",
+        "      for link in urls_html:\n",
+        "        list_href.append(link.get('href'))\n",
+        "    else:\n",
+        "      existing_page = 'No'\n",
+        "  # On stocke toutes ces données dans un df\n",
+        "  data = {'article_href':list_href}\n",
+        "  df = pd.DataFrame(data=data)\n",
+        "  # Dédoublonnage \n",
+        "  df.drop_duplicates(inplace = True)\n",
+        "  return df"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "gHBEjYm1iCHs"
+      },
+      "outputs": [],
+      "source": [
+        "def ESG_link_recovery(website_link):\n",
+        "  list_href = []\n",
+        "  url = website_link\n",
+        "  r = get_page_content(url, head).read()\n",
+        "  soup = BeautifulSoup(r, 'html.parser')\n",
+        "  urls_html = soup.find_all('article')\n",
+        "  for link in urls_html:\n",
+        "    get_a = link.a\n",
+        "    list_href.append(get_a.get('href')) \n",
+        "  page_index = 1\n",
+        "  err_code = 0\n",
+        "  \n",
+        "  while err_code == 0:\n",
+        "    page_index += 1\n",
+        "    try:\n",
+        "      url = website_link + \"page/\" + str(page_index) + \"/\" # à partir de la 2ème page website_link se modifie \n",
+        "      r = get_page_content(url, head).read()\n",
+        "      soup = BeautifulSoup(r, 'html.parser')\n",
+        "      urls_html = soup.find_all('article')\n",
+        "      for link in urls_html:\n",
+        "        get_a = link.a\n",
+        "        list_href.append(get_a.get('href')) \n",
+        "    except urllib.error.HTTPError as err: #erreur 404 : page not found\n",
+        "      err_code = err.code\n",
+        "      print(err_code)\n",
+        "\n",
+        "  list_href = list(set(list_href))\n",
+        "  # On stocke toutes ces données dans un df\n",
+        "  data = {'article_href':list_href}\n",
+        "  df = pd.DataFrame(data=data)\n",
+        "  df.drop_duplicates(inplace = True)\n",
+        "  return df"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "QvEc7mpixZrF"
+      },
+      "outputs": [],
+      "source": [
+        "#sustainable veiws\n",
+        "def sustainable_veiws_link_recovery(website_link):\n",
+        "  list_href = []\n",
+        "  categories = [\"policy-and-regulation\", \"capital-flows\", \"sector-focus\", \"comment\", \"data\", \"knowledge-hub\"]\n",
+        "  for category in categories:\n",
+        "    # page 1\n",
+        "    url = website_link + \"category/\" + category + \"/\"\n",
+        "    r = get_page_content(url, head).read()\n",
+        "    soup = BeautifulSoup(r, 'html.parser')\n",
+        "    center_urls_html = soup.find_all('div',  {'class' : 'article-card__inner'}) # en général 6 articles\n",
+        "    end_urls_html = soup.find_all('div', {'class' : 'article-wide__inner'}) # en général 5 articles\n",
+        "    for link in center_urls_html:\n",
+        "      get_a = link.a\n",
+        "      list_href.append(get_a.get('href')) \n",
+        "    for link in end_urls_html:\n",
+        "      get_a = link.a\n",
+        "      list_href.append(get_a.get('href')) \n",
+        "\n",
+        "      # page 2 ...\n",
+        "    page_index = 1\n",
+        "    err_code = 0\n",
+        "    \n",
+        "    while err_code == 0:\n",
+        "      page_index += 1\n",
+        "      try:\n",
+        "        url = website_link + \"category/\" + category + \"/\" + \"page/\" + str(page_index) + \"/\" # à partir de la 2ème page website_link se modifie \n",
+        "        r = get_page_content(url, head).read()\n",
+        "        soup = BeautifulSoup(r, 'html.parser')\n",
+        "        center_urls_html = soup.find_all('div',  {'class' : 'article-card__inner'}) \n",
+        "        end_urls_html = soup.find_all('div', {'class' : 'article-wide__inner'}) \n",
+        "        for link in center_urls_html:\n",
+        "          get_a = link.a\n",
+        "          list_href.append(get_a.get('href')) \n",
+        "        for link in end_urls_html:\n",
+        "          get_a = link.a\n",
+        "          list_href.append(get_a.get('href')) \n",
+        "      except urllib.error.HTTPError as err:\n",
+        "        err_code = err.code\n",
+        "        page_index += 1\n",
+        "        print(err_code)\n",
+        "\n",
+        "  list_href = list(set(list_href))\n",
+        "    \n",
+        "    # On stocke toutes ces données dans un df\n",
+        "  data = {'article_href':list_href}\n",
+        "  df = pd.DataFrame(data=data)\n",
+        "  # Dédoublonnage -> chaque ligne apparaît 2 fois -> ?\n",
+        "  df.drop_duplicates(inplace = True)\n",
+        "  return df"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "GfJpGCVL3hGz"
+      },
+      "outputs": [],
+      "source": [
+        "def novethic_link_recovery(website_link):\n",
+        "  list_href = []\n",
+        "  url = website_link\n",
+        "  r = requests.get(url)\n",
+        "  soup = BeautifulSoup(r.text, 'html.parser')\n",
+        "  urls_html = soup.find_all(\"div\", {\"class\": \"col-md-7\"})\n",
+        "  for link in urls_html:\n",
+        "    get_a = link.a\n",
+        "    list_href.append(\"https://lessentiel.novethic.fr\" + str(get_a.get('href')))\n",
+        "  page_index = 2\n",
+        "  existing_page = 'Yes' # il existe 47 pages d'articles pour novethic, dès que le contenu est vide existing_page = 'No'\n",
+        "  while existing_page == 'Yes':\n",
+        "    url = website_link + \"/page/\" + str(page_index) # à partir de la 2ème page website_link se modifie \n",
+        "    r = requests.get(url)\n",
+        "    soup = BeautifulSoup(r.text, 'html.parser') \n",
+        "    urls_html = soup.find_all(\"div\", {\"class\": \"col-md-7\"})\n",
+        "    if urls_html != []:\n",
+        "      page_index += 1\n",
+        "      for link in urls_html:\n",
+        "        #list_article_title.append(link.get('class'))\n",
+        "        get_a = link.a\n",
+        "        list_href.append(\"https://lessentiel.novethic.fr\" + str(get_a.get('href')))\n",
+        "    else:\n",
+        "      existing_page = 'No'  \n",
+        "\n",
+        "\n",
+        "  # On stocke toutes ces données dans un df\n",
+        "  data = {'article_href':list_href}\n",
+        "  df = pd.DataFrame(data=data)\n",
+        "  df.drop_duplicates(inplace = True)\n",
+        "  return df\n",
+        "  "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "iI1KrqSmZ3mS"
+      },
+      "outputs": [],
+      "source": [
+        "def KnowESG_link_recovery(website_link):\n",
+        "  list_href = []\n",
+        "  categories = [\"featured-article\", \"environment\", \"tech\", \"investors\", \"companies\", \"regulators\", \"sustainable-finance\", \"social-governance\", \"crypto\", \"cop27\"]\n",
+        "  for category in categories:\n",
+        "    # page 1\n",
+        "    url = website_link + \"/\" + category + \"/\"\n",
+        "    r = requests.get(url)\n",
+        "    soup = BeautifulSoup(r.text, 'html.parser')\n",
+        "    urls_html = soup.find_all('a', attrs={'class' : 'group py-5 border-b border-neutral-1 block'})\n",
+        "    for link in urls_html:\n",
+        "      list_href.append(\"https://www.knowesg.com\" + link.get('href'))\n",
+        "    # page 2, ...\n",
+        "    page_index = 2\n",
+        "    existing_page = 'Yes' \n",
+        "    while existing_page == 'Yes':\n",
+        "      url = website_link + \"/\" + category + \"/\" + str(page_index) + \"/\" \n",
+        "      r = requests.get(url)\n",
+        "      soup = BeautifulSoup(r.text, 'html.parser') \n",
+        "      urls_html = soup.find_all('a', attrs={'class' : 'group py-5 border-b border-neutral-1 block'})\n",
+        "      if urls_html != []:\n",
+        "        page_index += 1\n",
+        "        for link in urls_html:\n",
+        "          list_href.append(\"https://www.knowesg.com\" + link.get('href'))\n",
+        "      else:\n",
+        "       existing_page = 'No'\n",
+        "      # On stocke toutes ces données dans un df\n",
+        "  data = {'article_href':list_href}\n",
+        "  df = pd.DataFrame(data=data)\n",
+        "  # Dédoublonnage \n",
+        "  df.drop_duplicates(inplace = True)\n",
+        "  return df"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def CNBC_link_recovery(website_link):\n",
+        "  list_href = []\n",
+        "  url = website_link\n",
+        "  r = requests.get(url)\n",
+        "  soup = BeautifulSoup(r.text, 'html.parser')\n",
+        "# page 1\n",
+        "  urls_html = soup.find_all('div', {'class' : 'Card-titleContainer'}) \n",
+        "  for link in urls_html:\n",
+        "    get_a = link.a\n",
+        "    list_href.append(get_a.get('href')) \n",
+        "  page_index = 2\n",
+        "  existing_page = 'Yes' \n",
+        "  while existing_page == 'Yes':\n",
+        "    url = website_link + \"?page=\" + str(page_index)  # à partir de la 2ème page website_link se modifie \n",
+        "    r = requests.get(url)\n",
+        "    soup = BeautifulSoup(r.text, 'html.parser') \n",
+        "    urls_html = soup.find_all('div', {'class' : 'Card-titleContainer'}) \n",
+        "    if urls_html != []:\n",
+        "      page_index += 1\n",
+        "      print(page_index)\n",
+        "      for link in urls_html:\n",
+        "        get_a = link.a\n",
+        "        list_href.append(get_a.get('href'))\n",
+        "    else:\n",
+        "      existing_page = 'No'\n",
+        "   # On stocke toutes ces données dans un df\n",
+        "  data = {'article_href':list_href}\n",
+        "  df = pd.DataFrame(data=data)\n",
+        "  # Dédoublonnage \n",
+        "  df.drop_duplicates(inplace = True)\n",
+        "  return df"
+      ],
+      "metadata": {
+        "id": "rxYEG44LgtIh"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "G4zdLRGShJRF"
+      },
+      "outputs": [],
+      "source": [
+        "%%time \n",
+        "RF_href = RF_link_recovery(\"https://reclaimfinance.org/site/en/blog_en/\")\n",
+        "ESGtoday_href = ESG_link_recovery(\"https://www.esgtoday.com/category/esg-news/\")\n",
+        "Sveiws_href = sustainable_veiws_link_recovery(\"https://www.sustainableviews.com/\")\n",
+        "Novethic_href = novethic_link_recovery(\"https://lessentiel.novethic.fr/blog\")\n",
+        "KESG_href = KnowESG_link_recovery(\"https://www.knowesg.com\")\n",
+        "CNBC_href = CNBC_link_recovery(\"https://www.cnbc.com/esg-green-business/\") \n",
+        "#voir si on ne met pas CBNC_link_recovery(\"https://www.cnbc.com/climate/\") qui est plus générale"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "OBkb7uwZis94"
+      },
+      "outputs": [],
+      "source": [
+        "RF_href['website_name'] = 'reclaimfinance'\n",
+        "ESGtoday_href['website_name'] = 'esgtoday'\n",
+        "Sveiws_href['website_name'] = 'sustainableveiws'\n",
+        "Novethic_href['website_name'] = 'novethic'\n",
+        "KESG_href['website_name'] = 'knowesg'\n",
+        "CNBC_href['website_name'] = 'cnbcesg'"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "Gtf7Fj1-iUIs"
+      },
+      "outputs": [],
+      "source": [
+        "all_websites_full = pd.concat([RF_href, ESGtoday_href, Sveiws_href, Novethic_href, KESG_href, CNBC_href], ignore_index=True)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_cE1Zyvr_e-r",
+        "outputId": "7b988a38-4b91-498a-bbd6-c66ecb43b21f"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(8101, 2)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 15
+        }
+      ],
+      "source": [
+        "all_websites_full.shape"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "X8TeiUWSEfQF",
+        "outputId": "7a850589-3eb8-4fdb-ff59-ce71d35a1f3e"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "esgtoday            4207\n",
+              "knowesg             2012\n",
+              "novethic             953\n",
+              "sustainableveiws     439\n",
+              "reclaimfinance       423\n",
+              "cnbcesg               67\n",
+              "Name: website_name, dtype: int64"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 16
+        }
+      ],
+      "source": [
+        "all_websites_full.website_name.value_counts()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uxIdfuzN6MMP",
+        "outputId": "b687af6c-e991-49a9-cb35-6cf7d8786c18"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(5642, 5)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 22
+        }
+      ],
+      "source": [
+        "data_old= pd.read_excel(\"data/all_websites_old.xlsx\")\n",
+        "data_old.shape"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data_old.website_name.value_counts()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gwfikmFLF08V",
+        "outputId": "9667eb76-9428-4bb6-e186-7eab10d7489b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "esgtoday            3994\n",
+              "novethic             910\n",
+              "reclaimfinance       390\n",
+              "sustainableveiws     348\n",
+              "Name: website_name, dtype: int64"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 23
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "094KlAPW8UjT"
+      },
+      "outputs": [],
+      "source": [
+        "# On va scraper seulement les nouveaux articles\n",
+        "all_websites = all_websites_full[~all_websites_full['article_href'].isin(data_old['article_href'])]"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1AqzwXZK_mju",
+        "outputId": "3d091ffd-8604-4014-e26f-aed09c0977a2"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(2459, 2)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 25
+        }
+      ],
+      "source": [
+        "all_websites.shape"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 206
+        },
+        "id": "xs_HLvb_s-VY",
+        "outputId": "4423ff83-be89-4aa0-9a47-74edc6730bb7"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "                                        article_href    website_name\n",
+              "0  https://reclaimfinance.org/site/en/2022/11/16/...  reclaimfinance\n",
+              "1  https://reclaimfinance.org/site/en/2022/11/16/...  reclaimfinance\n",
+              "2  https://reclaimfinance.org/site/en/2022/11/15/...  reclaimfinance\n",
+              "3  https://reclaimfinance.org/site/en/2022/11/15/...  reclaimfinance\n",
+              "4  https://reclaimfinance.org/site/en/2022/11/10/...  reclaimfinance"
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-5669beea-8ebf-4632-8f56-505fca612d3d\">\n",
+              "    <div class=\"colab-df-container\">\n",
+              "      <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>article_href</th>\n",
+              "      <th>website_name</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>https://reclaimfinance.org/site/en/2022/11/16/...</td>\n",
+              "      <td>reclaimfinance</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>https://reclaimfinance.org/site/en/2022/11/16/...</td>\n",
+              "      <td>reclaimfinance</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>https://reclaimfinance.org/site/en/2022/11/15/...</td>\n",
+              "      <td>reclaimfinance</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>https://reclaimfinance.org/site/en/2022/11/15/...</td>\n",
+              "      <td>reclaimfinance</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>https://reclaimfinance.org/site/en/2022/11/10/...</td>\n",
+              "      <td>reclaimfinance</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "      <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-5669beea-8ebf-4632-8f56-505fca612d3d')\"\n",
+              "              title=\"Convert this dataframe to an interactive table.\"\n",
+              "              style=\"display:none;\">\n",
+              "        \n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
+              "       width=\"24px\">\n",
+              "    <path d=\"M0 0h24v24H0V0z\" fill=\"none\"/>\n",
+              "    <path d=\"M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z\"/><path d=\"M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z\"/>\n",
+              "  </svg>\n",
+              "      </button>\n",
+              "      \n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      flex-wrap:wrap;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "      <script>\n",
+              "        const buttonEl =\n",
+              "          document.querySelector('#df-5669beea-8ebf-4632-8f56-505fca612d3d button.colab-df-convert');\n",
+              "        buttonEl.style.display =\n",
+              "          google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "        async function convertToInteractive(key) {\n",
+              "          const element = document.querySelector('#df-5669beea-8ebf-4632-8f56-505fca612d3d');\n",
+              "          const dataTable =\n",
+              "            await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                     [key], {});\n",
+              "          if (!dataTable) return;\n",
+              "\n",
+              "          const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "            '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "            + ' to learn more about interactive tables.';\n",
+              "          element.innerHTML = '';\n",
+              "          dataTable['output_type'] = 'display_data';\n",
+              "          await google.colab.output.renderOutput(dataTable, element);\n",
+              "          const docLink = document.createElement('div');\n",
+              "          docLink.innerHTML = docLinkHtml;\n",
+              "          element.appendChild(docLink);\n",
+              "        }\n",
+              "      </script>\n",
+              "    </div>\n",
+              "  </div>\n",
+              "  "
+            ]
+          },
+          "metadata": {},
+          "execution_count": 26
+        }
+      ],
+      "source": [
+        "all_websites.head()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 206
+        },
+        "id": "_AZYkVwgtGhZ",
+        "outputId": "b9a490cf-8e01-4f0f-d5b1-441addb46032"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "                                           article_href website_name\n",
+              "8096  https://www.cnbc.com/2021/07/15/google-ceo-bar...      cnbcesg\n",
+              "8097  https://www.cnbc.com/2021/07/08/carbon-credits...      cnbcesg\n",
+              "8098  https://www.cnbc.com/2021/06/22/underdog-activ...      cnbcesg\n",
+              "8099  https://www.cnbc.com/2021/05/18/tesla-electric...      cnbcesg\n",
+              "8100  https://www.cnbc.com/2021/04/22/which-banks-ar...      cnbcesg"
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-fa294991-802f-4c71-bd42-1353da01f1c3\">\n",
+              "    <div class=\"colab-df-container\">\n",
+              "      <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>article_href</th>\n",
+              "      <th>website_name</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>8096</th>\n",
+              "      <td>https://www.cnbc.com/2021/07/15/google-ceo-bar...</td>\n",
+              "      <td>cnbcesg</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>8097</th>\n",
+              "      <td>https://www.cnbc.com/2021/07/08/carbon-credits...</td>\n",
+              "      <td>cnbcesg</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>8098</th>\n",
+              "      <td>https://www.cnbc.com/2021/06/22/underdog-activ...</td>\n",
+              "      <td>cnbcesg</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>8099</th>\n",
+              "      <td>https://www.cnbc.com/2021/05/18/tesla-electric...</td>\n",
+              "      <td>cnbcesg</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>8100</th>\n",
+              "      <td>https://www.cnbc.com/2021/04/22/which-banks-ar...</td>\n",
+              "      <td>cnbcesg</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "      <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-fa294991-802f-4c71-bd42-1353da01f1c3')\"\n",
+              "              title=\"Convert this dataframe to an interactive table.\"\n",
+              "              style=\"display:none;\">\n",
+              "        \n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
+              "       width=\"24px\">\n",
+              "    <path d=\"M0 0h24v24H0V0z\" fill=\"none\"/>\n",
+              "    <path d=\"M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z\"/><path d=\"M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z\"/>\n",
+              "  </svg>\n",
+              "      </button>\n",
+              "      \n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      flex-wrap:wrap;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "      <script>\n",
+              "        const buttonEl =\n",
+              "          document.querySelector('#df-fa294991-802f-4c71-bd42-1353da01f1c3 button.colab-df-convert');\n",
+              "        buttonEl.style.display =\n",
+              "          google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "        async function convertToInteractive(key) {\n",
+              "          const element = document.querySelector('#df-fa294991-802f-4c71-bd42-1353da01f1c3');\n",
+              "          const dataTable =\n",
+              "            await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                     [key], {});\n",
+              "          if (!dataTable) return;\n",
+              "\n",
+              "          const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "            '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "            + ' to learn more about interactive tables.';\n",
+              "          element.innerHTML = '';\n",
+              "          dataTable['output_type'] = 'display_data';\n",
+              "          await google.colab.output.renderOutput(dataTable, element);\n",
+              "          const docLink = document.createElement('div');\n",
+              "          docLink.innerHTML = docLinkHtml;\n",
+              "          element.appendChild(docLink);\n",
+              "        }\n",
+              "      </script>\n",
+              "    </div>\n",
+              "  </div>\n",
+              "  "
+            ]
+          },
+          "metadata": {},
+          "execution_count": 27
+        }
+      ],
+      "source": [
+        "all_websites.tail()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "1DIB_k3NcvV-"
+      },
+      "source": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "KsEhkTcbk0w6"
+      },
+      "source": [
+        "#**2. Le contenu des articles**"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "0npGL836k8sI"
+      },
+      "outputs": [],
+      "source": [
+        "# Contents RF articles\n",
+        "# Input:\n",
+        "#  -> url = href d'un article de RF\n",
+        "\n",
+        "class RF_scraping:\n",
+        "\n",
+        "  def __init__(self,url):\n",
+        "    self.url = url\n",
+        "    r = requests.get(self.url)\n",
+        "    self.soup = BeautifulSoup(r.text, 'html.parser')\n",
+        "    self.article_title = self.scrap_title()\n",
+        "    self.subtitles = self.scrap_sub_titles()\n",
+        "    self.fusion_text = self.scrap_contents()\n",
+        "    self.full_text = self.f_full_txt()\n",
+        "    self.publication_date = self.find_date()\n",
+        "    \n",
+        "  def scrap_title(self):\n",
+        "    article_title = self.soup.find(\"title\").text \n",
+        "    return article_title\n",
+        "\n",
+        "  def scrap_sub_titles(self):\n",
+        "    subtitles_html = self.soup.find_all('h1', attrs={'class' : 'title-heading-left'})\n",
+        "    subtitles = [subtitle.text for subtitle in subtitles_html]\n",
+        "    return subtitles\n",
+        "    \n",
+        "  def scrap_contents(self):\n",
+        "      fusion_contents = self.soup.find_all('div', attrs={'class': 'fusion-text'}) \n",
+        "      fusion_text = [contents.text for contents in fusion_contents]\n",
+        "      return fusion_text\n",
+        "  \n",
+        "  def f_full_txt(self):\n",
+        "    full_text = self.article_title + '\\n'\n",
+        "    subtitles_temp = self.subtitles\n",
+        "    cont = -1\n",
+        "    for paragraph in self.fusion_text:\n",
+        "      full_text = full_text + paragraph + '\\n'\n",
+        "      cont += 1\n",
+        "      if subtitles_temp != [] and cont > 0: # on associe des sous titres aux parties -> à revoir\n",
+        "        full_text = full_text + subtitles_temp[0] + '\\n'\n",
+        "        subtitles_temp.pop(0)\n",
+        "    return full_text\n",
+        "\n",
+        "  def find_date(self):\n",
+        "    return(find_date(self.url))\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "2yxcW6ruoN3d"
+      },
+      "outputs": [],
+      "source": [
+        "# Contents ESG articles\n",
+        "# Input:\n",
+        "#  -> url = href d'un article de ESG\n",
+        "\n",
+        "class ESG_scraping:\n",
+        "\n",
+        "  def __init__(self,url):\n",
+        "    self.url = url\n",
+        "    self.r = get_page_content(self.url, head).read()\n",
+        "    self.soup = BeautifulSoup(self.r, 'html.parser')\n",
+        "    self.article_title = self.scrap_title()\n",
+        "    self.fusion_text = self.scrap_contents()\n",
+        "    self.full_text = self.f_full_txt()\n",
+        "    self.publication_date = self.find_date()\n",
+        "\n",
+        "  def scrap_title(self):\n",
+        "    return self.soup.find(\"title\").text\n",
+        "  \n",
+        "  def scrap_contents(self):\n",
+        "      contents = self.soup.find_all('p')\n",
+        "      fusion_text = [paragraph.text for paragraph in contents]\n",
+        "      return fusion_text\n",
+        "\n",
+        "  def f_full_txt(self):\n",
+        "    full_text = self.article_title + '\\n'\n",
+        "    for paragraph in self.fusion_text:\n",
+        "      full_text = full_text + paragraph + '\\n'\n",
+        "    return full_text\n",
+        "\n",
+        "  def find_date(self):\n",
+        "    pub_dt = find_date(self.r)\n",
+        "    return pub_dt"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "cDNUfBF68oOp"
+      },
+      "outputs": [],
+      "source": [
+        "# Contents Novethic or Sustainable veiws articles\n",
+        "# Input:\n",
+        "#  -> url = href d'un article de Novethic ou de Sustainable veiws\n",
+        "\n",
+        "class Sveiws_Novethic_scraping:\n",
+        "\n",
+        "  def __init__(self,url):\n",
+        "    self.url = url\n",
+        "    self.r = get_page_content(self.url, head).read()\n",
+        "    self.soup = BeautifulSoup(self.r, 'html.parser')\n",
+        "    self.article_title = self.scrap_title()\n",
+        "    self.fusion_text = self.scrap_contents()\n",
+        "    self.full_text = self.f_full_txt()\n",
+        "    self.publication_date = self.find_date()\n",
+        "\n",
+        "  def scrap_title(self):\n",
+        "    return self.soup.find(\"title\").text\n",
+        "\n",
+        "  def scrap_contents(self):\n",
+        "    fusion_text = []\n",
+        "    contents = self.soup.find_all('meta')\n",
+        "    for m in contents:\n",
+        "      get_content = m.get('content')\n",
+        "      fusion_text.append(get_content)\n",
+        "    fusion_text =  list(set(fusion_text))\n",
+        "    if None in fusion_text:\n",
+        "      fusion_text.remove(None)\n",
+        "    return fusion_text\n",
+        "\n",
+        "  def f_full_txt(self):\n",
+        "    full_text = self.article_title + '\\n'\n",
+        "    for paragraph in self.fusion_text:\n",
+        "      full_text = full_text + paragraph + '\\n'\n",
+        "    return full_text \n",
+        "\n",
+        "  def find_date(self):\n",
+        "    pub_dt = find_date(self.r)\n",
+        "    return pub_dt"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "1IP1jo3haSMM"
+      },
+      "outputs": [],
+      "source": [
+        "class KESG_scraping:\n",
+        "    \n",
+        "  def __init__(self,url):\n",
+        "    self.url = url\n",
+        "    self.r = get_page_content(self.url, head).read()\n",
+        "    self.soup = BeautifulSoup(self.r, 'html.parser')\n",
+        "    self.article_title = self.scrap_title()\n",
+        "    self.fusion_text = self.scrap_contents()\n",
+        "    self.full_text = self.f_full_txt()\n",
+        "    self.publication_date = self.find_date()\n",
+        "\n",
+        "  def scrap_title(self):\n",
+        "    return self.soup.find(\"title\").text\n",
+        "\n",
+        "  def scrap_contents(self):\n",
+        "    contents = self.soup.find_all('div', attrs={'class': 'mt-9 text-neutral-6 text-lg prose prose-sm 2xl:prose-lg max-w-none tracking-wide sourceserif'})\n",
+        "    fusion_text = [paragraph.text for paragraph in contents]\n",
+        "    return fusion_text\n",
+        "\n",
+        "  def f_full_txt(self):\n",
+        "    full_text = self.article_title + '\\n'\n",
+        "    for paragraph in self.fusion_text:\n",
+        "      full_text = full_text + paragraph + '\\n'\n",
+        "    return full_text \n",
+        "\n",
+        "  def find_date(self):\n",
+        "    pub_dt = find_date(self.r)\n",
+        "    return pub_dt"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class CNBC_scraping:\n",
+        "    \n",
+        "  def __init__(self,url):\n",
+        "    self.url = url\n",
+        "    self.r = get_page_content(self.url, head).read()\n",
+        "    self.soup = BeautifulSoup(self.r, 'html.parser')\n",
+        "    self.article_title = self.scrap_title()\n",
+        "    self.key_points = self.scrap_keys()\n",
+        "    self.fusion_text = self.scrap_contents()\n",
+        "    self.full_text = self.f_full_txt()\n",
+        "    self.publication_date = self.find_date()\n",
+        "\n",
+        "  def scrap_title(self):\n",
+        "    return self.soup.find(\"title\").text\n",
+        "\n",
+        "  def scrap_keys(self):\n",
+        "    key_points = self.soup.find_all('div', {'class': 'RenderKeyPoints-list'})\n",
+        "    key_points = [key_point.text for key_point in key_points]\n",
+        "    return key_points\n",
+        "\n",
+        "  \n",
+        "  def scrap_contents(self):\n",
+        "      contents = self.soup.find_all('p')\n",
+        "      fusion_text = [paragraph.text for paragraph in contents]\n",
+        "      return fusion_text\n",
+        "\n",
+        "  def f_full_txt(self):\n",
+        "    full_text = self.article_title + '\\n'\n",
+        "    if self.key_points != []:\n",
+        "      for key_point in self.key_points:\n",
+        "        full_text = full_text + key_point + '\\n'\n",
+        "      for paragraph in self.fusion_text:\n",
+        "        full_text = full_text + paragraph + '\\n'\n",
+        "    else:\n",
+        "      for paragraph in self.fusion_text:\n",
+        "        full_text = full_text + paragraph + '\\n'\n",
+        "    return full_text\n",
+        "\n",
+        "  def find_date(self):\n",
+        "    pub_dt = find_date(self.r)\n",
+        "    return pub_dt"
+      ],
+      "metadata": {
+        "id": "AmTDrf0Q_620"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "EPyNN1SJlVFk"
+      },
+      "outputs": [],
+      "source": [
+        "RF = all_websites.loc[all_websites.website_name == 'reclaimfinance'] \n",
+        "urls_RF = RF.article_href.tolist()\n",
+        "\n",
+        "ESG = all_websites.loc[all_websites.website_name == 'esgtoday'] \n",
+        "urls_ESG = ESG.article_href.tolist()\n",
+        "\n",
+        "Sveiws = all_websites.loc[all_websites.website_name == 'sustainableveiws'] \n",
+        "urls_Sveiws = Sveiws.article_href.tolist()\n",
+        "\n",
+        "Novethic = all_websites.loc[all_websites.website_name == 'novethic'] \n",
+        "urls_Novethic = Novethic.article_href.tolist()\n",
+        "\n",
+        "KESG = all_websites.loc[all_websites.website_name == 'knowesg'] \n",
+        "urls_KESG = KESG.article_href.tolist()\n",
+        "\n",
+        "CNBC = all_websites.loc[all_websites.website_name == 'cnbcesg'] \n",
+        "urls_CNBC = CNBC.article_href.tolist()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yGF64GF6lRnG",
+        "outputId": "7f0c9023-7ade-4999-8013-bef04f5821ca"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "CPU times: user 2.82 s, sys: 188 ms, total: 3.01 s\n",
+            "Wall time: 2min 6s\n"
+          ]
+        }
+      ],
+      "source": [
+        "%%time\n",
+        "text_RF = []\n",
+        "dates_RF = []\n",
+        "for url in urls_RF:\n",
+        "  c = RF_scraping(url)\n",
+        "  text = c.full_text\n",
+        "  pub_date = c.publication_date\n",
+        "  text_RF.append(text)\n",
+        "  dates_RF.append(pub_date)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "m4Fra6qCOrq0",
+        "outputId": "9b8b728b-2a89-4bec-d9f9-37ddcc7b0ee1"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "CPU times: user 14.8 s, sys: 375 ms, total: 15.2 s\n",
+            "Wall time: 1min 58s\n"
+          ]
+        }
+      ],
+      "source": [
+        "%%time\n",
+        "text_ESG = []\n",
+        "dates_ESG = []\n",
+        "for url in urls_ESG:\n",
+        "  c = ESG_scraping(url)\n",
+        "  text = c.full_text\n",
+        "  pub_date = c.publication_date\n",
+        "  text_ESG.append(text)\n",
+        "  dates_ESG.append(pub_date)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "x8UtUDon7JeN",
+        "outputId": "cd7bb61e-2d3e-41ce-f63f-c76ea66e2c4b"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "CPU times: user 3.27 s, sys: 139 ms, total: 3.41 s\n",
+            "Wall time: 1min 42s\n"
+          ]
+        }
+      ],
+      "source": [
+        "%%time\n",
+        "text_Sveiws = []\n",
+        "dates_Sveiws = []\n",
+        "for url in urls_Sveiws:\n",
+        "  c = Sveiws_Novethic_scraping(url)\n",
+        "  text = c.full_text\n",
+        "  pub_date = c.publication_date\n",
+        "  text_Sveiws.append(text)\n",
+        "  dates_Sveiws.append(pub_date)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "zMgGeOmv7Jty",
+        "outputId": "98a7e2b7-ae15-4ba3-c2e3-fae0f5c3ec8d"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "CPU times: user 7.01 s, sys: 109 ms, total: 7.12 s\n",
+            "Wall time: 38.8 s\n"
+          ]
+        }
+      ],
+      "source": [
+        "%%time\n",
+        "text_Novethic = []\n",
+        "dates_Novethic = []\n",
+        "for url in urls_Novethic:\n",
+        "  c = Sveiws_Novethic_scraping(url)\n",
+        "  text = c.full_text\n",
+        "  pub_date = c.publication_date\n",
+        "  text_Novethic.append(text)\n",
+        "  dates_Novethic.append(pub_date)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6EsFALxoauRK",
+        "outputId": "13cb3834-5b27-4289-afb7-731b060c1905"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "CPU times: user 4min 38s, sys: 3.63 s, total: 4min 42s\n",
+            "Wall time: 17min 18s\n"
+          ]
+        }
+      ],
+      "source": [
+        "%%time\n",
+        "text_KESG = []\n",
+        "dates_KESG = []\n",
+        "for url in urls_KESG:\n",
+        "  c = KESG_scraping(url)\n",
+        "  text = c.full_text\n",
+        "  pub_date = c.publication_date\n",
+        "  text_KESG.append(text)\n",
+        "  dates_KESG.append(pub_date)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "%%time\n",
+        "text_CNBC = []\n",
+        "dates_CNBC = []\n",
+        "for url in urls_CNBC:\n",
+        "  c = CNBC_scraping(url)\n",
+        "  text = c.full_text\n",
+        "  pub_date = c.publication_date\n",
+        "  text_CNBC.append(text)\n",
+        "  dates_CNBC.append(pub_date)"
+      ],
+      "metadata": {
+        "id": "ddwdw0TDh3C3",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "34670f79-7332-4c65-dd6a-d4a957474194"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "CPU times: user 5min 7s, sys: 2.36 s, total: 5min 10s\n",
+            "Wall time: 5min 58s\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "4LsumqwalWrE"
+      },
+      "outputs": [],
+      "source": [
+        "data_txt_RF = {'article_href':urls_RF, 'publication_date' : dates_RF, 'article_contents': text_RF}\n",
+        "all_articles_RF = pd.DataFrame(data=data_txt_RF)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "tJaYiLukQeat"
+      },
+      "outputs": [],
+      "source": [
+        "data_txt_ESG = {'article_href':urls_ESG, 'publication_date' : dates_ESG, 'article_contents': text_ESG}\n",
+        "all_articles_ESG = pd.DataFrame(data=data_txt_ESG)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "Qk66mmue7wtN"
+      },
+      "outputs": [],
+      "source": [
+        "data_txt_Sveiws = {'article_href':urls_Sveiws, 'publication_date' : dates_Sveiws, 'article_contents': text_Sveiws}\n",
+        "all_articles_Sveiws = pd.DataFrame(data=data_txt_Sveiws)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "DDmNk0mC7w-Q"
+      },
+      "outputs": [],
+      "source": [
+        "data_txt_Novethic = {'article_href':urls_Novethic, 'publication_date' : dates_Novethic, 'article_contents': text_Novethic}\n",
+        "all_articles_Novethic = pd.DataFrame(data=data_txt_Novethic)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "DR0bSIGybLa8"
+      },
+      "outputs": [],
+      "source": [
+        "data_txt_KESG = {'article_href':urls_KESG, 'publication_date' : dates_KESG, 'article_contents': text_KESG}\n",
+        "all_articles_KESG = pd.DataFrame(data=data_txt_KESG)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data_txt_CNBC = {'article_href':urls_CNBC, 'publication_date' : dates_CNBC, 'article_contents': text_CNBC}\n",
+        "all_articles_CNBC = pd.DataFrame(data=data_txt_CNBC)"
+      ],
+      "metadata": {
+        "id": "PslY4ZMeiElD"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "Dj7r60NUYbYS"
+      },
+      "outputs": [],
+      "source": [
+        "all_articles_contents = pd.concat([all_articles_RF, all_articles_ESG, all_articles_Sveiws, all_articles_Novethic, \n",
+        "                                   all_articles_KESG, all_articles_CNBC], ignore_index=True) "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "7uSBgxH8lnXS"
+      },
+      "outputs": [],
+      "source": [
+        "all_websites = all_websites.merge(all_articles_contents, on = 'article_href', how = 'left')"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "all_websites.website_name.value_counts()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7Qjtv5EDTwR2",
+        "outputId": "156ea8a9-e27b-4df9-8062-d0b87e89fa21"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "knowesg             2012\n",
+              "esgtoday             213\n",
+              "sustainableveiws      91\n",
+              "cnbcesg               67\n",
+              "novethic              43\n",
+              "reclaimfinance        33\n",
+              "Name: website_name, dtype: int64"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 55
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "OPst0ZrDCBWJ"
+      },
+      "outputs": [],
+      "source": [
+        "# Les articles déjà scrapés + les articles qu'on vient de scraper\n",
+        "all_websites_complet = pd.concat([data_old, all_websites], ignore_index=True) "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 206
+        },
+        "id": "gDH3EIUHm7j3",
+        "outputId": "b422898b-34f5-487e-c354-cead894410c0"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "   Unnamed: 0                                       article_href  \\\n",
+              "0         0.0  https://reclaimfinance.org/site/en/2022/09/22/...   \n",
+              "1         1.0  https://reclaimfinance.org/site/en/2022/09/21/...   \n",
+              "2         2.0  https://reclaimfinance.org/site/en/2022/09/20/...   \n",
+              "3         3.0  https://reclaimfinance.org/site/en/2022/09/19/...   \n",
+              "4         4.0  https://reclaimfinance.org/site/en/2022/09/16/...   \n",
+              "\n",
+              "     website_name publication_date  \\\n",
+              "0  reclaimfinance       2022-09-22   \n",
+              "1  reclaimfinance       2022-09-21   \n",
+              "2  reclaimfinance       2022-09-20   \n",
+              "3  reclaimfinance       2022-09-19   \n",
+              "4  reclaimfinance       2022-09-16   \n",
+              "\n",
+              "                                    article_contents  \n",
+              "0  HSBC AM’s new coal policy wiped out by big loo...  \n",
+              "1  The ECB’s timidity on climate change is making...  \n",
+              "2  European Central Bank’s failure to decarbonize...  \n",
+              "3  US banks: financing coal expansion, ignoring c...  \n",
+              "4  Strengthened Race to Zero criteria require GFA...  "
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-f4de2657-7f2c-4b7d-b6a9-8b0c0ff99f56\">\n",
+              "    <div class=\"colab-df-container\">\n",
+              "      <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>Unnamed: 0</th>\n",
+              "      <th>article_href</th>\n",
+              "      <th>website_name</th>\n",
+              "      <th>publication_date</th>\n",
+              "      <th>article_contents</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>0.0</td>\n",
+              "      <td>https://reclaimfinance.org/site/en/2022/09/22/...</td>\n",
+              "      <td>reclaimfinance</td>\n",
+              "      <td>2022-09-22</td>\n",
+              "      <td>HSBC AM’s new coal policy wiped out by big loo...</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>1.0</td>\n",
+              "      <td>https://reclaimfinance.org/site/en/2022/09/21/...</td>\n",
+              "      <td>reclaimfinance</td>\n",
+              "      <td>2022-09-21</td>\n",
+              "      <td>The ECB’s timidity on climate change is making...</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>2.0</td>\n",
+              "      <td>https://reclaimfinance.org/site/en/2022/09/20/...</td>\n",
+              "      <td>reclaimfinance</td>\n",
+              "      <td>2022-09-20</td>\n",
+              "      <td>European Central Bank’s failure to decarbonize...</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>3.0</td>\n",
+              "      <td>https://reclaimfinance.org/site/en/2022/09/19/...</td>\n",
+              "      <td>reclaimfinance</td>\n",
+              "      <td>2022-09-19</td>\n",
+              "      <td>US banks: financing coal expansion, ignoring c...</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>4.0</td>\n",
+              "      <td>https://reclaimfinance.org/site/en/2022/09/16/...</td>\n",
+              "      <td>reclaimfinance</td>\n",
+              "      <td>2022-09-16</td>\n",
+              "      <td>Strengthened Race to Zero criteria require GFA...</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "      <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-f4de2657-7f2c-4b7d-b6a9-8b0c0ff99f56')\"\n",
+              "              title=\"Convert this dataframe to an interactive table.\"\n",
+              "              style=\"display:none;\">\n",
+              "        \n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
+              "       width=\"24px\">\n",
+              "    <path d=\"M0 0h24v24H0V0z\" fill=\"none\"/>\n",
+              "    <path d=\"M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z\"/><path d=\"M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z\"/>\n",
+              "  </svg>\n",
+              "      </button>\n",
+              "      \n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      flex-wrap:wrap;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "      <script>\n",
+              "        const buttonEl =\n",
+              "          document.querySelector('#df-f4de2657-7f2c-4b7d-b6a9-8b0c0ff99f56 button.colab-df-convert');\n",
+              "        buttonEl.style.display =\n",
+              "          google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "        async function convertToInteractive(key) {\n",
+              "          const element = document.querySelector('#df-f4de2657-7f2c-4b7d-b6a9-8b0c0ff99f56');\n",
+              "          const dataTable =\n",
+              "            await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                     [key], {});\n",
+              "          if (!dataTable) return;\n",
+              "\n",
+              "          const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "            '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "            + ' to learn more about interactive tables.';\n",
+              "          element.innerHTML = '';\n",
+              "          dataTable['output_type'] = 'display_data';\n",
+              "          await google.colab.output.renderOutput(dataTable, element);\n",
+              "          const docLink = document.createElement('div');\n",
+              "          docLink.innerHTML = docLinkHtml;\n",
+              "          element.appendChild(docLink);\n",
+              "        }\n",
+              "      </script>\n",
+              "    </div>\n",
+              "  </div>\n",
+              "  "
+            ]
+          },
+          "metadata": {},
+          "execution_count": 57
+        }
+      ],
+      "source": [
+        "all_websites_complet.head()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 206
+        },
+        "id": "nyu4b9tCYBmm",
+        "outputId": "09d7c663-6a0c-4e64-d70e-1386e896b8d7"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "      Unnamed: 0                                       article_href  \\\n",
+              "8096         NaN  https://www.cnbc.com/2021/07/15/google-ceo-bar...   \n",
+              "8097         NaN  https://www.cnbc.com/2021/07/08/carbon-credits...   \n",
+              "8098         NaN  https://www.cnbc.com/2021/06/22/underdog-activ...   \n",
+              "8099         NaN  https://www.cnbc.com/2021/05/18/tesla-electric...   \n",
+              "8100         NaN  https://www.cnbc.com/2021/04/22/which-banks-ar...   \n",
+              "\n",
+              "     website_name publication_date  \\\n",
+              "8096      cnbcesg       2021-07-15   \n",
+              "8097      cnbcesg       2021-07-08   \n",
+              "8098      cnbcesg       2021-06-22   \n",
+              "8099      cnbcesg       2021-05-18   \n",
+              "8100      cnbcesg       2021-04-22   \n",
+              "\n",
+              "                                       article_contents  \n",
+              "8096  Google CEO Sundar Pichai: Climate is 'bar none...  \n",
+              "8097  Carbon credits: Institute of International Fin...  \n",
+              "8098  Underdog activist Engine No. 1 is launching an...  \n",
+              "8099  Tesla electric vehicle regulatory credits expl...  \n",
+              "8100  Which banks are increasing and decreasing foss...  "
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-c95f2623-0860-4e82-9510-ffd53d4a5211\">\n",
+              "    <div class=\"colab-df-container\">\n",
+              "      <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>Unnamed: 0</th>\n",
+              "      <th>article_href</th>\n",
+              "      <th>website_name</th>\n",
+              "      <th>publication_date</th>\n",
+              "      <th>article_contents</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>8096</th>\n",
+              "      <td>NaN</td>\n",
+              "      <td>https://www.cnbc.com/2021/07/15/google-ceo-bar...</td>\n",
+              "      <td>cnbcesg</td>\n",
+              "      <td>2021-07-15</td>\n",
+              "      <td>Google CEO Sundar Pichai: Climate is 'bar none...</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>8097</th>\n",
+              "      <td>NaN</td>\n",
+              "      <td>https://www.cnbc.com/2021/07/08/carbon-credits...</td>\n",
+              "      <td>cnbcesg</td>\n",
+              "      <td>2021-07-08</td>\n",
+              "      <td>Carbon credits: Institute of International Fin...</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>8098</th>\n",
+              "      <td>NaN</td>\n",
+              "      <td>https://www.cnbc.com/2021/06/22/underdog-activ...</td>\n",
+              "      <td>cnbcesg</td>\n",
+              "      <td>2021-06-22</td>\n",
+              "      <td>Underdog activist Engine No. 1 is launching an...</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>8099</th>\n",
+              "      <td>NaN</td>\n",
+              "      <td>https://www.cnbc.com/2021/05/18/tesla-electric...</td>\n",
+              "      <td>cnbcesg</td>\n",
+              "      <td>2021-05-18</td>\n",
+              "      <td>Tesla electric vehicle regulatory credits expl...</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>8100</th>\n",
+              "      <td>NaN</td>\n",
+              "      <td>https://www.cnbc.com/2021/04/22/which-banks-ar...</td>\n",
+              "      <td>cnbcesg</td>\n",
+              "      <td>2021-04-22</td>\n",
+              "      <td>Which banks are increasing and decreasing foss...</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "      <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-c95f2623-0860-4e82-9510-ffd53d4a5211')\"\n",
+              "              title=\"Convert this dataframe to an interactive table.\"\n",
+              "              style=\"display:none;\">\n",
+              "        \n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
+              "       width=\"24px\">\n",
+              "    <path d=\"M0 0h24v24H0V0z\" fill=\"none\"/>\n",
+              "    <path d=\"M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z\"/><path d=\"M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z\"/>\n",
+              "  </svg>\n",
+              "      </button>\n",
+              "      \n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      flex-wrap:wrap;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "      <script>\n",
+              "        const buttonEl =\n",
+              "          document.querySelector('#df-c95f2623-0860-4e82-9510-ffd53d4a5211 button.colab-df-convert');\n",
+              "        buttonEl.style.display =\n",
+              "          google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "        async function convertToInteractive(key) {\n",
+              "          const element = document.querySelector('#df-c95f2623-0860-4e82-9510-ffd53d4a5211');\n",
+              "          const dataTable =\n",
+              "            await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                     [key], {});\n",
+              "          if (!dataTable) return;\n",
+              "\n",
+              "          const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "            '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "            + ' to learn more about interactive tables.';\n",
+              "          element.innerHTML = '';\n",
+              "          dataTable['output_type'] = 'display_data';\n",
+              "          await google.colab.output.renderOutput(dataTable, element);\n",
+              "          const docLink = document.createElement('div');\n",
+              "          docLink.innerHTML = docLinkHtml;\n",
+              "          element.appendChild(docLink);\n",
+              "        }\n",
+              "      </script>\n",
+              "    </div>\n",
+              "  </div>\n",
+              "  "
+            ]
+          },
+          "metadata": {},
+          "execution_count": 58
+        }
+      ],
+      "source": [
+        "all_websites_complet.tail()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "all_websites_complet.website_name.value_counts()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Gc_a_AFNPPBF",
+        "outputId": "0f69b642-b936-48cd-dbe7-5d21d7417071"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "esgtoday            4207\n",
+              "knowesg             2012\n",
+              "novethic             953\n",
+              "sustainableveiws     439\n",
+              "reclaimfinance       423\n",
+              "cnbcesg               67\n",
+              "Name: website_name, dtype: int64"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 59
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "fAiRpOyClypg"
+      },
+      "outputs": [],
+      "source": [
+        "all_websites_complet.to_excel('all_websites.xlsx')"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Nouvelle section"
+      ],
+      "metadata": {
+        "id": "vGlBQTm4QCer"
+      }
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
