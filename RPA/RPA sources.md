@@ -2,3 +2,7 @@ Robotic process automation (RPA) is a form of business process automation techno
 
 
 Existing solutions: 
+VANILLA 
+1) Blue Prism : une automatisation rapide, pour des délais de livraison courts pour la RPA
+2) UiPath :  des robots aux services de l’automatisation des processus métiers
+3) Pega : un outil RPA marketing redoutable
