@@ -59,3 +59,6 @@ Great Databases:
 > 🇫🇷 [French Economics DB](https://opendata.caissedesdepots.fr/pages/pagehomerefonte/ )
 
 > [Label Studio](https://labelstud.io/ )
+
+> [AI Computations Survey](https://www.stateof.ai/compute ) Is indeed a cool site! 
+
