@@ -1,0 +1,101 @@
+\documentclass[10pt, oneside]{article} 
+\usepackage{amsmath, amsthm, amssymb, calrsfs, wasysym, verbatim, bbm, color, graphics, geometry}
+
+\geometry{tmargin=.75in, bmargin=.75in, lmargin=.75in, rmargin = .75in}  
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Cdot}{\boldsymbol{\cdot}}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{conv}{Convention}
+\newtheorem{rem}{Remark}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+
+
+\title{Running Lecture Outline: [Course Code]}
+\author{[Full Name]}
+\date{Academic Year 2019-2020}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\vspace{.25in}
+
+\section{Fall 2019}
+
+\subsection{Fri, Sept 6: Phenomenology of Microscopic Physics}
+
+\begin{itemize}
+
+\item Newtonian mechanics (i.e., ${\bf F} = m{\bf a}$) is an excellent theory; it applies to the vast majority of human-scale (and even interplanetary-scale) physics. 
+
+\item Apart from relativistic effects at very high velocities (special relativity) or in very strong gravitational fields (general relativity), Newtonian mechanics accurately describes a huge range of phenomena, but around the end of the Nineteenth Century people became aware of some physical effects for which there is no sensible Newtonian explanation.
+
+\item Examples include:
+\begin{itemize}
+\item the {\bf double slit experiment} (done with light by Thomas Young in 1801, and with electrons by Tonomura in 1986)
+\item the photoelectric effect (analyzed by Einstein in 1905 --- in fact his Nobel-winning work)
+\item the ``quantum Venn diagram'' puzzle, involving the overlaps of three polarizing filters
+\item the stability of the hydrogen atom (i.e., the fact that the electron doesn't lose energy and spiral inward toward the proton).
+\end{itemize}
+
+\begin{rem}
+How now, brown cow?
+\end{rem}
+
+\begin{defn}
+The {\em Feynman kernel} is given by
+\[ K(x_b, t_b; x_a, t_a) = \int_{x(t_a) = x_a}^{x(t_b) = x_b} e^{(i/\hbar) S[x(t)]} \; \mathcal{D}x(t). \]
+\end{defn}
+
+\end{itemize}
+
+\subsection{Mon, Sept 9: Review of Newtonian Mechanics}
+
+\begin{itemize}
+
+\item  A {\em Newtonian trajectory} ${\bf x}(t)$ ($t \in \R$) is given by solutions of the second order ODE
+\[ m\, \ddot{{\bf x}}(t) = {\bf F}({\bf x}(t)), \]
+where $m > 0$ is a basic parameter associated with a given Newtonian particle, called its {\em mass}.
+
+\item The force field ${\bf F}({\bf x})$ --- which we take to be static (i.e., not intrinsically dependent on time) for simplicity --- is said to be {\em conservative} if there is a {\em potential function} $V({\bf x})$ such that
+\[ {\bf F}({\bf x}) = -\nabla V({\bf x}). \]
+Here, `$\nabla$' denotes the {\em gradient operator}, 
+\[ \nabla V = \bigg( \frac{\partial V}{\partial x}, \, \frac{\partial V}{\partial y}, \, \frac{\partial V}{\partial z} \bigg). \]
+
+\item For a conservative force field, we can find a {\em conserved quantity} along the Newtonian trajectories, namely the {\em total mechanical energy}.
+\[ E = H({\bf x}, {\bf p}) := \frac{1}{2m}\, {\bf p}^2 + V({\bf x}). \]
+Here, ${\bf p}^2 := {\bf p} \Cdot {\bf p} = \| {\bf p} \|^2$, and ${\bf p} := m {\bf v} := m \dot{{\bf x}}$ is the {\em momentum}.
+
+\end{itemize}
+
+\subsection{Tue, Sept 10: Alternative Formulations of Newtonian Mechanics}
+
+\begin{itemize}
+
+\item The {\bf Hamiltonian formulation}:
+\[ \dot{{\bf x}} = \frac{\partial H}{\partial {\bf p}}, \;\;\;\;\; \dot{{\bf p}} = - \frac{\partial H}{\partial {\bf x}}. \]
+
+\item The {\bf Lagrangian formulation}:
+\[ \delta S[{\bf x}(t)] = 0, \]
+where the {\em action} on the time interval $[t_a, t_b]$ is given by
+\[ S[{\bf x}(t)] := \int_{t_a}^{t_b} \bigg[ \frac{m}{2} \, \dot{{\bf x}}(t)^2 - V({\bf x}(t)) \bigg]  \; dt. \]
+
+\item Etc.
+
+\end{itemize}
+
+
+\section{Spring 2020}
+
+
+
+\end{document}
