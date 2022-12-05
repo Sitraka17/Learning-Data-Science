@@ -39,3 +39,11 @@ San Francisco crime:- https://lnkd.in/eb8mjCVS
 Customer satisfcation:-https://lnkd.in/eYaKivjw
 Trip type classification:- https://lnkd.in/epvhmyEF
 Categorize cusine:- https://lnkd.in/e-xm44RB
+
+
+
+
+
+You may want to convert one data type into another. You can convert a variable into a different type with the int() , str() , bool() , or float() functions, depending on what you want the final data type to be. To add integers and strings, you first need to use str() to convert the integer to a string. 
+print('I completed ' + str(3) + ' courses!')
+
