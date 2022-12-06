@@ -47,3 +47,6 @@ Categorize cusine:- https://lnkd.in/e-xm44RB
 You may want to convert one data type into another. You can convert a variable into a different type with the int() , str() , bool() , or float() functions, depending on what you want the final data type to be. To add integers and strings, you first need to use str() to convert the integer to a string. 
 print('I completed ' + str(3) + ' courses!')
 
+
+
+To install Python packages on your own system, you can use pip , a package maintenance system. Once installed, pip allows you to install packages like numpy from the terminal. pip3 install numpy After you install a package, you can import the package to a script using import package_name to use the code the package contains. import numpy
