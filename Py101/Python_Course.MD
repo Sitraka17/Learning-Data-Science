@@ -49,4 +49,4 @@ print('I completed ' + str(3) + ' courses!')
 
 
 
-To install Python packages on your own system, you can use pip , a package maintenance system. Once installed, pip allows you to install packages like numpy from the terminal. pip3 install numpy After you install a package, you can import the package to a script using import package_name to use the code the package contains. import numpy
+To install Python packages on your own system, you can use *pip* , a package maintenance system. Once installed, *pip* allows you to install packages like numpy from the terminal. pip3 install numpy After you install a package, you can import the package to a script using import package_name to use the code the package contains. *import numpy*
