@@ -13,3 +13,8 @@ Step 2: We have them all play against each other in 10-round matches. For exampl
 Step 3: At the end of the tournament, we eliminate the 5 players who earned the least number of points… and we duplicate the 5 players who obtained the best score. For example, if the Kings 👑 have obtained the least number of points and the Jokers 🃏 the highest number of points, there will be 5 Queens 🌹, 5 Magicians 🧙, 5 Copycats 😼, and 10 Jokers 🃏 left… but not a single King 👑! Thus, the number of representatives of each strategy will have changed at the end of the tournament.
 And then what ?
 Step 4: We repeat the experiment until there’s only one type of player left!
+
+
+
+" Do unto others as you would have others do unto you " is not only a moral law, but also a mathematical one.
+But in that case, how can we explain why there are so many people in our societies who don’t trust each other and systematically play their own game
