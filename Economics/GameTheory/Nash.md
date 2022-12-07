@@ -27,3 +27,14 @@ But in that case, how can we explain why there are so many people in our societi
 > Lesson n° 2: in a group comprising a majority of egoists (which, in this experiment, is the case beyond a certain number of rounds) altruistic co-operation is sanctioned and the players who use it ... end up disappearing. Morality? When there’s no communication, selfish behaviour will tend to spread quickly in a very short time: in the land of altruists, the cheater is king!
 
 But as we’ll see, the picture is not all black and hat altruism can also be a strength!
+
+
+
+The safest pairing is thus the one in which the players are co-operative in principle, no matter what happens. 🌹🌹
+Why is this important?
+This course has constantly stressed that in many situations the best way to maximize individual gains is to cheat every time. But no-one can make themselves all on their own : as human beings, citizens or employees, we’re all tied up in a network of interdependence, and feats are accomplished by entire teams. No single man could have set foot on the moon.
+
+Now imagine that you have to cross a raging ocean in a small boat (doesn't that conjure up the feeling of going through a global crisis, or of conducting a professional team project?) You wouldn't get very far with Wizards. 🧙 on board! Whenever it comes to rowing, contributing to a team effort, saving people who’ve fallen overboard or sharing out the food, the Queens 🌹 or even the Copycats 😼 will answer the call and enable everyone to get safely back to shore.
+
+
+You have the lyrics: now try to find the tune in your daily life! 🎵
