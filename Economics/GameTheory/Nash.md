@@ -22,6 +22,7 @@ But in that case, how can we explain why there are so many people in our societi
 
 
 
->> Lesson 1: The fewer repeated interactions there are between players, the more they’ll go for distrusting and cheating tactics. Relationships of trust and co-operation take a long time to create, especially when there are no means of communication! Lesson n° 2: in a group comprising a majority of egoists (which, in this experiment, is the case beyond a certain number of rounds) altruistic co-operation is sanctioned and the players who use it ... end up disappearing. Morality? When there’s no communication, selfish behaviour will tend to spread quickly in a very short time: in the land of altruists, the cheater is king!
+>> Lesson 1: The fewer repeated interactions there are between players, the more they’ll go for distrusting and cheating tactics. Relationships of trust and co-operation take a long time to create, especially when there are no means of communication! 
+>> Lesson n° 2: in a group comprising a majority of egoists (which, in this experiment, is the case beyond a certain number of rounds) altruistic co-operation is sanctioned and the players who use it ... end up disappearing. Morality? When there’s no communication, selfish behaviour will tend to spread quickly in a very short time: in the land of altruists, the cheater is king!
 
 But as we’ll see, the picture is not all black and hat altruism can also be a strength!
