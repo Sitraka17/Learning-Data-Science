@@ -16,5 +16,5 @@ Step 4: We repeat the experiment until there’s only one type of player left!
 
 
 
--" Do unto others as you would have others do unto you " is not only a moral law, but also a mathematical one.
+```diff - " Do unto others as you would have others do unto you " is not only a moral law, but also a mathematical one.
 But in that case, how can we explain why there are so many people in our societies who don’t trust each other and systematically play their own game
