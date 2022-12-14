@@ -20,5 +20,4 @@ The most usefull site ever: https://developers.google.com/machine-learning/guide
 
 
 Finally, go try GPT Chat. 
-ChatGPT is fine-tuned from a model in the GPT-3.5 series, which finished training in early 2022. You can learn more about the 3.5 series here.
-[Click here](https://openai.com/blog/chatgpt/)
+ChatGPT is fine-tuned from a model in the GPT-3.5 series, which finished training in early 2022. You can learn more about the 3.5 series [here](https://openai.com/blog/chatgpt/).
