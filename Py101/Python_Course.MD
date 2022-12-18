@@ -52,4 +52,5 @@ To install Python packages on your own system, you can use *pip* , a package mai
 
 
 c) Method
+
 A method is a function that works on a specific type of object. Each Python object has specific methods depending on the object type. Methods are called using dot notation: object.method() . When the .capitalize() method is called on a string, it returns a string with the first letter capitalized. greet = 'hello' print(greet.capitalize()) print(greet)
