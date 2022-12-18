@@ -9,19 +9,19 @@ what technique  is used to subset lists of lists?
 Square Bracets
 
 
-1. Basic python and statistics
+1. **Basic python and statistics**
 
 Pima Indians :- https://lnkd.in/ePZWW7R4
 Cardio Goodness fit :- https://lnkd.in/ewnKFnsC
 Automobile :- https://lnkd.in/ekS56qNy
 
-2. Advanced Statistics
+2. **Advanced Statistics**
 
 Game of Thrones:-https://lnkd.in/eFvgQqsR
 World University Ranking:-https://lnkd.in/e6Mx9d5a
 IMDB Movie Dataset:- https://lnkd.in/epu7gDiN
 
-3. Supervised Learning
+3. **Supervised Learning**
 
 a) Regression Problems
 
