@@ -46,11 +46,13 @@ You may want to convert one data type into another. You can convert a variable i
 print('I completed ' + str(3) + ' courses!')
 
 
+c) Importing packages
 
+A package is a collection of code. To use a package, import it using the format: import package . The numpy package contains code for array computing. To import numpy , write import numpy . import numpy A commonly used function in numpy is array() . To use it, you must reference the package name using the format package.function() .
 To install Python packages on your own system, you can use *pip* , a package maintenance system. Once installed, *pip* allows you to install packages like numpy from the terminal. pip3 install numpy After you install a package, you can import the package to a script using import package_name to use the code the package contains. *import numpy*
 
 
 
-c) Method
+d) Method
 
 A method is a function that works on a specific type of object. Each Python object has specific methods depending on the object type. Methods are called using dot notation: object.method() . When the .capitalize() method is called on a string, it returns a string with the first letter capitalized. greet = 'hello' print(greet.capitalize()) print(greet)
