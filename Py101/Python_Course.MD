@@ -56,3 +56,7 @@ To install Python packages on your own system, you can use *pip* , a package mai
 d) Method
 
 A method is a function that works on a specific type of object. Each Python object has specific methods depending on the object type. Methods are called using dot notation: object.method() . When the .capitalize() method is called on a string, it returns a string with the first letter capitalized. greet = 'hello' print(greet.capitalize()) print(greet)
+
+e) .append() method 
+
+The .append() list method adds a new element to the end of a list. This changes the list it is applied to by extending it. l.append('horse') will append the string 'horse' to the end of the list l . l = [1, 2, 3] l.append('horse') print(l) [1, 2, 3, 'horse']
