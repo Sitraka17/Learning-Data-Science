@@ -42,11 +42,14 @@ Categorize cusine:- https://lnkd.in/e-xm44RB
 
 
 
-
-
 You may want to convert one data type into another. You can convert a variable into a different type with the int() , str() , bool() , or float() functions, depending on what you want the final data type to be. To add integers and strings, you first need to use str() to convert the integer to a string. 
 print('I completed ' + str(3) + ' courses!')
 
 
 
 To install Python packages on your own system, you can use *pip* , a package maintenance system. Once installed, *pip* allows you to install packages like numpy from the terminal. pip3 install numpy After you install a package, you can import the package to a script using import package_name to use the code the package contains. *import numpy*
+
+
+
+c) Method
+A method is a function that works on a specific type of object. Each Python object has specific methods depending on the object type. Methods are called using dot notation: object.method() . When the .capitalize() method is called on a string, it returns a string with the first letter capitalized. greet = 'hello' print(greet.capitalize()) print(greet)
