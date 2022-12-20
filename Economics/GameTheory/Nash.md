@@ -1,4 +1,8 @@
-We can now understand how it’s possible for peace and co-operation to emerge in a group whose members don’t necessarily have a natural penchant for altruism, but who simply “live and let live” . Now let's try to see a little beyond the tip of our nose. What happens if we repeat the experiment over time, in a larger-scale group? Because as you probably know, in the view of evolutionary theorists, “winners” manage to successfully reproduce ... while “losers” die out: and the same is true of behaviour! In a group, types of behaviour that harm the individual members end up dying out after a number of generations… even if they’re beneficial for the group as a whole. And it’s the same thing the other way around! Let's try to understand this phenomenon with a new game: Step 1: We take 5 representatives of each strategy:
+We can now understand how it’s possible for peace and co-operation to emerge in a group whose members don’t necessarily have a natural penchant for altruism, but who simply “live and let live” . 
+
+Now let's try to see a little beyond the tip of our nose. What happens if we repeat the experiment over time, in a larger-scale group? Because as you probably know, in the view of evolutionary theorists, “winners” manage to successfully reproduce ... while “losers” die out: and the same is true of behaviour! 
+
+In a group, types of behaviour that harm the individual members end up dying out after a number of generations… even if they’re beneficial for the group as a whole. And it’s the same thing the other way around! Let's try to understand this phenomenon with a new game: Step 1: We take 5 representatives of each strategy:
 🌹🌹🌹🌹🌹
 😼😼😼😼😼
 🧙🧙🧙🧙🧙
