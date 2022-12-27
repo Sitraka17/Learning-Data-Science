@@ -9,3 +9,7 @@ Le développement durable est « un développement qui répond aux besoins du pr
 
 
 Donc l'ESG.
+
+
+
+HRB : 
