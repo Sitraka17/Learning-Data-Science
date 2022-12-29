@@ -5,4 +5,5 @@
 * V. Brunel (2019), From the Fermi–Dirac distribution to PD curves, The Journal of Risk Finance Vol. 20 No. 2, pp. 138-154
 
 
+URL: 
 https://www.financite.be/fr/reference/credit-scoring-une-approche-objective-dans-loctroi-de-credit 
