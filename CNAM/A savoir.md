@@ -12,5 +12,5 @@
 
 [Formation CNAM](https://formation.cnam.fr/rechercher-par-discipline/diplome-d-ingenieur-specialite-informatique-big-data-et-intelligence-artificielle-974808.kjsp?RF=newcat_themes)
 
-Vive le CNAM
+Vive le CNAM : Conservatoire national des arts et métiers
 
