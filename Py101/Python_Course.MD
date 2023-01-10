@@ -60,3 +60,25 @@ A method is a function that works on a specific type of object. Each Python obje
 e) .append() method 
 
 The .append() list method adds a new element to the end of a list. This changes the list it is applied to by extending it. l.append('horse') will append the string 'horse' to the end of the list l . l = [1, 2, 3] l.append('horse') print(l) [1, 2, 3, 'horse']
+
+
+
+
+
+
+What is a class in Python?
+A class is a blueprint for creating objects (a particular data structure), providing initial values for state (member variables or attributes), and implementations of behavior (member functions or methods).
+What is an object in Python?
+An object is an instance of a class. It is a specific example of the class that contains its own data and methods.
+What is the difference between a class and an object?
+A class is a blueprint or template for creating objects, while an object is an instance of a class that has its own unique attribute and behavior.
+What is inheritance in Python?
+Inheritance is a mechanism in which a new class is derived from an existing class. The derived class inherits all the attributes and behavior of the existing class and can also add new attributes and behavior of its own.
+What is polymorphism in Python?
+Polymorphism is the ability of different objects to respond to the same method call in different ways. In Python, this is achieved by defining methods with the same name in different classes, and then using a single function or method to call the method that is appropriate for the type of object that is passed as an argument.
+What is encapsulation in Python?
+Encapsulation refers to the practice of keeping an object's data and methods hidden from other parts of the program, and only allowing them to be accessed through a well-defined interface. In Python, this is achieved through the use of private and protected attributes and methods, which cannot be accessed from outside the class.
+What is the difference between a class method and a static method in Python?
+A class method is a method that is bound to the class and not the instance of the object. It receives the class as implicit first argument, just like an instance method receives the instance. A static method is a method that belongs to a class rather than an instance of the class. It doesn't receive any special first argument and it works with the class and its attributes.
+What are the benefits of using object-oriented programming in Python?
+The benefits of using object-oriented programming in Python include: code reusability, encapsulation, 
