@@ -67,9 +67,9 @@ The .append() list method adds a new element to the end of a list. This changes 
 
 
 What is a class in Python?
-A class is a blueprint for creating objects (a particular data structure), providing initial values for state (member variables or attributes), and implementations of behavior (member functions or methods).
+A class is a blueprint for creating objects (a particular data structure), providing initial values for state (member variables or attributes), and implementations of behavior (member functions or methods).  
 What is an object in Python?
-An object is an instance of a class. It is a specific example of the class that contains its own data and methods.
+An object is an instance of a class. It is a specific example of the class that contains its own data and methods.  
 What is the difference between a class and an object?
 A class is a blueprint or template for creating objects, while an object is an instance of a class that has its own unique attribute and behavior.
 What is inheritance in Python?
