@@ -36,3 +36,10 @@ print(still_missing)
 not_poodle = mpr[mpr['Dog Breed'] != "Poodle"]        ####" HERE IT S INTERESTING 
 print(not_poodle)                                     ### Since the column name have fcking spaces and Capitals. You HAVE TO put it in [ ] and ' ' 
 #Yeah so please juste use _ 
+
+
+# Select purchases from 'Pet Paradise'
+purchase = credit_records[credit_records.location == 'Pet Paradise']
+
+# Display
+print(purchase)
