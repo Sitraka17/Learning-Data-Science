@@ -11,17 +11,14 @@ plt.legend()
 
 
 
-# Add a title
-plt.title("Officer Deshaun's", fontsize=9)
+# Create plot
+plt.plot(six_months.month, six_months.hours_worked)
 
-# Add y-axis label
-plt.ylabel('Hours worked')
+# Add annotation "Missing June data" at (2.5, 80)
+plt.text(2.5, 80, "Missing June data")
 
-
-# Display plot
+# Display graph
 plt.show()
-
-
 
 # Create plot to show worked hours over the 6 months 
 plt.plot(six_months.month, six_months.hours_worked)
