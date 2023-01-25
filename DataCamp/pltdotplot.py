@@ -10,6 +10,16 @@ plt.plot(mengfei.day_of_week, mengfei.hours_worked, label="Mengfei")
 plt.legend()
 
 
+
+# Add a title
+plt.title("Officer Deshaun's", fontsize=9)
+
+# Add y-axis label
+plt.ylabel('idk')
+
+
+
+
 # Display plot
 plt.show()
 
