@@ -7,5 +7,8 @@ plt.plot(aditya.day_of_week, aditya.hours_worked, label="Aditya")
 # Add a label to Mengfei's plot
 plt.plot(mengfei.day_of_week, mengfei.hours_worked, label="Mengfei")
 
+plt.legend()
+
+
 # Display plot
 plt.show()
