@@ -1,11 +1,11 @@
-# Plot Officer Deshaun's hours_worked vs. day_of_week
-plt.plot(deshaun.day_of_week, deshaun.hours_worked)
+# Officer Deshaun
+plt.plot(deshaun.day_of_week, deshaun.hours_worked, label='Deshaun') #LABEL the LINES otherwise it's not readable 
 
-# Plot Officer Aditya's hours_worked vs. day_of_week
-plt.plot(aditya.day_of_week,aditya.hours_worked)
+# Add a label to Aditya's plot
+plt.plot(aditya.day_of_week, aditya.hours_worked, label="Aditya")
 
-# Plot Officer Mengfei's hours_worked vs. day_of_week
-plt.plot(mengfei.day_of_week, mengfei.hours_worked )
+# Add a label to Mengfei's plot
+plt.plot(mengfei.day_of_week, mengfei.hours_worked, label="Mengfei")
 
-# Display all three line plots
+# Display plot
 plt.show()
