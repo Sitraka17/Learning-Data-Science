@@ -68,7 +68,9 @@ Great Databases:
 
 <a>Best Practices:</a>
 To have a stable Python env. use Poetry 
+
 To define the requirements: use pip freeze > requirements.txt
+
 Follow the Zen of Python [here](https://en.wikipedia.org/wiki/Zen_of_Python#:~:text=The%20Zen%20of%20Python%20is,Python%20mailing%20list%20in%201999.)
 
 
