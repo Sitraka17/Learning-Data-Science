@@ -79,6 +79,8 @@ Usefull website for an [overview](https://pythonprogramming.net/)
 
 [Machine Learning Roadmap by Daniel Broke](https://www.youtube.com/watch?v=pHiMN_gy9mk)
 
+[](https://www.youtube.com/watch?v=hsQ9efb6a7c)
+
 [MIT Optimization](https://www.youtube.com/watch?v=uK5yvoXnkSk&t=1s)
 
 ## Competitions 
