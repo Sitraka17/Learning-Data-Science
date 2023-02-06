@@ -73,7 +73,7 @@ To define the requirements: use pip freeze > requirements.txt
 
 Follow the Zen of Python [here](https://en.wikipedia.org/wiki/Zen_of_Python#:~:text=The%20Zen%20of%20Python%20is,Python%20mailing%20list%20in%201999.)
 
-Usefull website for an [overview]()
+Usefull website for an [overview](https://pythonprogramming.net/)
 
 # Youtubes Videos that will always be worth watch
 
