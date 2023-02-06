@@ -79,7 +79,7 @@ Usefull website for an [overview](https://pythonprogramming.net/)
 
 https://www.youtube.com/watch?v=pHiMN_gy9mk
 
-MIT Optimization()
+[MIT Optimization](https://www.youtube.com/watch?v=uK5yvoXnkSk&t=1s)
 
 ## Competitions 
 [HakerRank](https://www.hackerrank.com/challenges/py-if-else/problem?isFullScreen=true&h_r=next-challenge&h_v=zen)      
