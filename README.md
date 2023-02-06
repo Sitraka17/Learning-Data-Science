@@ -77,3 +77,7 @@ Follow the Zen of Python [here](https://en.wikipedia.org/wiki/Zen_of_Python#:~:t
 # Youtubes Videos that will always be worth watch
 
 https://www.youtube.com/watch?v=pHiMN_gy9mk
+
+
+## Competitions 
+[HakerRank](https://www.hackerrank.com/challenges/py-if-else/problem?isFullScreen=true&h_r=next-challenge&h_v=zen)      
