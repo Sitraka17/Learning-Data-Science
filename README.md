@@ -77,7 +77,7 @@ Usefull website for an [overview](https://pythonprogramming.net/)
 
 # Youtubes Videos that will always be worth watch
 
-[Machine Learning Roadmap](https://www.youtube.com/watch?v=pHiMN_gy9mk)
+[Machine Learning Roadmap by Daniel Broke](https://www.youtube.com/watch?v=pHiMN_gy9mk)
 
 [MIT Optimization](https://www.youtube.com/watch?v=uK5yvoXnkSk&t=1s)
 
