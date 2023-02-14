@@ -85,3 +85,5 @@ Usefull website for an [overview](https://pythonprogramming.net/)
 
 ## Competitions 
 [HakerRank](https://www.hackerrank.com/challenges/py-if-else/problem?isFullScreen=true&h_r=next-challenge&h_v=zen)      
+
+http://web.stanford.edu/class/cme193/syllabus.html
