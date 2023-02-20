@@ -24,3 +24,4 @@ plt.legend()
 # Show the plot
 plt.show()
 
+# Eventhough I'm not the first to have had the idea to post a diminishing return graph I can share it :p
