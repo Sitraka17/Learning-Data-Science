@@ -1,9 +1,7 @@
 #Documentation: https://nashpy.readthedocs.io/en/stable/ 
 
 # But the real lesson of the prisoner's dilemma is concealed beyond this: """"you have to see far, think big… and project yourself. """"
-
-
-$ python -m pip install nashpy
+#$ python -m pip install nashpy
 
 import nashpy as nash
 import numpy as np
