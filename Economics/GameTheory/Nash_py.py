@@ -14,6 +14,3 @@ rps
 
 ## For the record: 😼 vs🃏 = 6/6 ;🌹 vs🃏 = -1/27 ; 🧙 vs🃏 = 9/-3 👑 vs🃏 = 7/3 
 #
-#
-#
-
