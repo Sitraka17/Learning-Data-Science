@@ -15,7 +15,7 @@ Réaliser une classification hiérarchique.
 Donc qu'est ce ? 
 Appréhender les espaces vectoriels euclidiens consiste à comprendre les propriétés et les caractéristiques des espaces vectoriels munis d'un produit scalaire. Cela implique de connaître les notions de base telles que ** les vecteurs, les normes, les angles et les projections.**
 
-Réaliser une réduction de dimension implique de projeter les données d'un espace de dimension élevée vers un espace de dimension plus faible. Cela peut se faire à l'aide de techniques telles que l'analyse en composantes principales ou la méthode de Factorisation en Matrices Non-Négatives (NMF).
+Réaliser une réduction de dimension implique de projeter les données d'un espace de dimension élevée vers un espace de dimension plus faible. Cela peut se faire à l'aide de techniques telles que l'analyse en composantes principales ou la méthode de Factorisation en Matrices Non-Négatives (NMF). [https://www.invivoo.com/wp-content/uploads/dimensionality-reduction-2.png]
 
 Interpréter une analyse en composantes principales (ACP) consiste à comprendre les relations entre les variables et les composantes principales créées par la méthode ACP. Les composantes principales sont des combinaisons linéaires des variables d'origine qui représentent la variation maximale des données.
 
