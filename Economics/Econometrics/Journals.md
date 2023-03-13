@@ -1,7 +1,7 @@
 # Refeering activities
 
-Journal of Computational and Graphical Statistics, 
-Journal of Econometrics, 
+* Journal of Computational and Graphical Statistics, 
+* Journal of Econometrics, 
 Journal of Business and Economic Statistics, 
 Journal of Applied Econometrics, 
 Journal of Financial Econometrics, 
