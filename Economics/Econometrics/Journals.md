@@ -10,7 +10,7 @@
 8. Journal of Empirical Finance, 
 9. Studies in Nonlinear Dynamics and Econometrics,
 10. International Journal of Forecasting, 
-Empirical Economics, Journal of the Royal Statistical Society: Series B, 
-Journal of Banking and Finance, Computational Statistics and Data Analysis (CSDA), 
-Statistical Inference for Stochastic Processes,
-Société Française de Statistique
+11. Empirical Economics, Journal of the Royal Statistical Society: Series B, 
+12. Journal of Banking and Finance, Computational Statistics and Data Analysis (CSDA), 
+13. Statistical Inference for Stochastic Processes,
+14. Société Française de Statistique
