@@ -12,5 +12,5 @@ Studies in Nonlinear Dynamics and Econometrics,
 International Journal of Forecasting, 
 Empirical Economics, Journal of the Royal Statistical Society: Series B, 
 Journal of Banking and Finance, Computational Statistics and Data Analysis (CSDA), 
-Statistical Inference for Stochastic
-Processes, Soci´et´e Fran¸caise de Statistique
+Statistical Inference for Stochastic Processes,
+Société Française de Statistique
