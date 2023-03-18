@@ -28,6 +28,7 @@ bmi = weight / height ** 2
 
 # Create the light array
 light = bmi < 21 
+heavy = bmi > 25
 np_light = np.array(light)
 
 # Print out light
@@ -39,3 +40,5 @@ print("Your BMI is: " + str(round(bmi, 2)))
 # Print out BMI if it's below 21
 if light:
     print("Your BMI is below 21, which is considered to be light.")
+if heavy:
+    print("Your BMI is over 24, which is considered to be overweighted aka being a fat ass.")
