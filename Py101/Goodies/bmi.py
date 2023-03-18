@@ -19,4 +19,29 @@ np_light = np.array(light)
 print(light)
 
 # Print out BMIs of all baseball players whose BMI is below 21
-print(bmi[light])
+#print(bmi[light])
+
+#Improved version
+# Import numpy
+import numpy as np
+
+# Ask user to input their height and weight
+height = float(input("Enter your height in meters: "))
+weight = float(input("Enter your weight in kilograms: "))
+
+# Calculate the BMI: bmi
+bmi = weight / height ** 2
+
+# Create the light array
+light = bmi < 21 
+np_light = np.array(light)
+
+# Print out light
+print("Is the BMI below 21? " + str(light))
+
+# Print out the BMI
+print("Your BMI is: " + str(round(bmi, 2)))
+
+# Print out BMI if it's below 21
+if light:
+    print("Your BMI is below 21, which is considered to be light.")
