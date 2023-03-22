@@ -1,0 +1,23 @@
+# Create a bar plot of the popularity by genre
+sns.barplot(x="Genre", y="Popularity", data=df)
+plt.show()
+
+# Create a violin plot of the score by type
+sns.violinplot(x="Type", y="Score", data=df)
+plt.show()
+
+# Create a scatter plot of the score and members
+sns.scatterplot(x="Score", y="Members", data=df)
+plt.show()
+
+# Create a line plot of the popularity over time
+df["Start_date"] = pd.to_datetime(df["Start_date"])
+df = df.sort_values("Start_date")
+sns.lineplot(x="Start_date", y="Popularity", data=df)
+plt.show()
+
+PROMY :  pleins d'infos 
+permis 
+etc 
+
+5% du prix de vente
