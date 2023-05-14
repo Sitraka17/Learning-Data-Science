@@ -36,3 +36,4 @@ To put it another way, cloud computing is a way to rent compute power and storag
 
 Instead of maintaining CPUs and storage in your datacenter, you rent them for the time that you need them. The cloud provider takes care of maintaining the underlying infrastructure for you. The cloud enables you to quickly solve your toughest business challenges and bring cutting-edge solutions to your users.
 
+Microsoft Certified: Azure Administrator Associate
