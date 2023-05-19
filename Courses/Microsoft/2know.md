@@ -4,7 +4,7 @@ I will gather key nformations.
 
 Those are cheat sheets or "memory helpers".
 
-Describe the consumption-based model
+#### Describe the consumption-based model
 Completed
 100 XP
 3 minutes
@@ -18,7 +18,7 @@ Cloud computing falls under OpEx because cloud computing operates on a consumpti
 
 This consumption-based model has many benefits, including:
 
-No upfront costs.
+#### No upfront costs.
 No need to purchase and manage costly infrastructure that users might not use to its fullest potential.
 The ability to pay for more resources when they're needed.
 The ability to stop paying for resources that are no longer needed.
@@ -26,7 +26,7 @@ With a traditional datacenter, you try to estimate the future resource needs. If
 
 In a cloud-based model, you don’t have to worry about getting the resource needs just right. If you find that you need more virtual machines, you add more. If the demand drops and you don’t need as many virtual machines, you remove machines as needed. Either way, you’re only paying for the virtual machines that you use, not the “extra capacity” that the cloud provider has on hand.
 
-Compare cloud pricing models
+#### Compare cloud pricing models
 Cloud computing is the delivery of computing services over the internet by using a pay-as-you-go pricing model. You typically pay only for the cloud services you use, which helps you:
 
 Plan and manage your operating costs.
@@ -37,3 +37,7 @@ To put it another way, cloud computing is a way to rent compute power and storag
 Instead of maintaining CPUs and storage in your datacenter, you rent them for the time that you need them. The cloud provider takes care of maintaining the underlying infrastructure for you. The cloud enables you to quickly solve your toughest business challenges and bring cutting-edge solutions to your users.
 
 Microsoft Certified: Azure Administrator Associate
+
+
+
+#### Describe the core architectural components of Azure
