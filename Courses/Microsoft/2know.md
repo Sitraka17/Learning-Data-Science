@@ -5,8 +5,6 @@ I will gather key nformations.
 Those are cheat sheets or "memory helpers".
 
 #### Describe the consumption-based model
-Completed
-100 XP
 3 minutes
 When comparing IT infrastructure models, there are two types of expenses to consider. Capital expenditure (CapEx) and operational expenditure (OpEx).
 
