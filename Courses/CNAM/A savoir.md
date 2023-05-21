@@ -7,7 +7,7 @@
  - Déployer des algorithmes de prédiction avec des applications pour la représentation, classification, visualisation, compression.
  - Comprendre et maîtriser les problématiques de la gestion de l'information orientée vers l'intégration de ressources documentaires.
  - Savoir déployer des outils d’apprentissage dans le contexte actuel du big data : grandes masses de données, données / labels bruitées, données manquantes.
- - Maitriser des outils analytiques tel que SAS ou R
+ - Maitriser des outils analytiques tel que SAS ou R [Python]
  - Pouvoir utiliser des langages informatiques (C++, R, Python, ...)
 
 [Formation CNAM](https://formation.cnam.fr/rechercher-par-discipline/diplome-d-ingenieur-specialite-informatique-big-data-et-intelligence-artificielle-974808.kjsp?RF=newcat_themes)
