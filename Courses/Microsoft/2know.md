@@ -36,6 +36,4 @@ Instead of maintaining CPUs and storage in your datacenter, you rent them for th
 
 Microsoft Certified: Azure Administrator Associate
 
-
-
 #### Describe the core architectural components of Azure
