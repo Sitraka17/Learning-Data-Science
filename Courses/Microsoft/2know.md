@@ -50,3 +50,6 @@ Geo-zone-redundant storage (GZRS)
 Read-access geo-zone-redundant storage (RA-GZRS)
 
 Asmita Dubey 
+
+
+
