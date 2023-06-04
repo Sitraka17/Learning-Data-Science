@@ -7,3 +7,5 @@ Objective is / 1Z0-1096-23 /
 Quick links to important interfaces 
 Autonomous DB instance
 
+Notebook is the interface where you create complex queries using SQL commands. 
+
