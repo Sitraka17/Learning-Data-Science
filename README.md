@@ -34,7 +34,9 @@ Time series 📈
 Machine Learning :electron:
 Natural Language Processing 📰
 Computer Vision 👁️
-Web Development: sitraka.fr
+Web Development: www.sitraka.fr
+
+NEW OBJECTIVE/ become ML OPS 
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
 Great Databases: 
