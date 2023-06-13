@@ -7,5 +7,5 @@ pandas==1.2.3
 altair==4.1.0
 
 
-In order to have it you must use pip freeze > requirements.txt
-That's all. 
+# In order to have it you must use pip freeze > requirements.txt
+# That's all. 
