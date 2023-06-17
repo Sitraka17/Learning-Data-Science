@@ -1,4 +1,6 @@
 Here’s why your efforts to extract value from data are going nowhere
+
+
 The industry-wide neglect of data design and data quality (and what you can do about it)
 My favorite way of explaining the difference between data science and data engineering is this:
 
