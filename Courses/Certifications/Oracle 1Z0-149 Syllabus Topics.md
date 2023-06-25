@@ -63,5 +63,6 @@ Managing PL/SQL Code	- Describe and use conditional compilation
 Managing Dependencies	- Track and manage procedural dependencies
 The Oracle Database Program with PL/SQL Certification Program certifies candidates on skills and knowledge related to Oracle Database products and technologies. The Oracle 1Z0-149 is granted based on a combination of passing exams, training, and performance-based assignments, depending on the level of certification. Oracle Database Program with PL/SQL certification is a real benchmark of experience and expertise that helps you stand out in a crowd among employers. To ensure success, Oracle recommends combining education courses, practice exams, and hands-on experience to prepare for your Oracle Database PL/SQL Developer Certified Professional (OCP) certification exam as questions will test your ability to apply the knowledge you have gained in hands-on practice or professional experience.
 
-Sitraka
+
+###Sitraka
 from :  https://www.dbexam.com/oracle/oracle-1z0-149-certification-exam-syllabus
