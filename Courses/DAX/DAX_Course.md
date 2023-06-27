@@ -166,7 +166,7 @@ Dans la table FactSales, faites défiler jusqu’à la colonne ReturnQuantity, p
 
 Sous l’onglet Accueil, dans le ruban, dans le groupe Calculs, cliquez sur le bouton Addition automatique.
 
-Somme automatique dans PowerPivot
+# Somme automatique dans PowerPivot
 
 Cliquez sur la flèche vers le bas en côté deUm automatique,puis cliquez sur Moyenne (notez les autres fonctions d’agrégation standard que vous pouvez utiliser également).
 
