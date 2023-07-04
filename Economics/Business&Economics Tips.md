@@ -19,5 +19,6 @@ url       = "https://aeturrell.github.io/coding-for-economists"
 }
 
 
-
+McNamara fallacy
 https://www.welcometothejungle.com/fr/articles/effet-mcnamara-biais
+
