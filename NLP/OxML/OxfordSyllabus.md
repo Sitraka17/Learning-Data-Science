@@ -14,12 +14,14 @@ Rama Cont: Quantitative finance, ML for building market simulators
  
 > 09/07/23
 Pasquale Minervini : Advanced topics in ML & NLP
- Mihai Cucuringu: Networks, statistical ML, and quant. finance
+Mihai Cucuringu: Networks, statistical ML, and quant. finance
 He He: Robustness & truthfulness of NLP models
+
 > 10/07/23
 Ryan Cotterell: Computational linguistics, NLP & ML
 Rahul Savani: RL in Finance & Automated Trading
 Blanka Horvath: Market Simulators, Deep Hedging
+
 > 11/07/23
 Stefan Zohren:  Representation learning & (financial) time series
 Ed Grefenstette: NLP & generation, machine reasoning, meta-learning
