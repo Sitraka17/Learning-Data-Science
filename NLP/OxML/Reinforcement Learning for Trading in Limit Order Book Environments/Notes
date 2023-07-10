@@ -1,3 +1,5 @@
 # Reinforcement Learning for Trading in Limit Order Book Environments
 
 
+Optimal Execution (OE) : 
+Bertsimas and Lo (1998) have deﬁned best execution as the dynamic trading strategy that **provides the minimum expected cost of trading over a ﬁxed period of time,** and they show that in a variety of circumstances one can ﬁnd such a strat- egy by employing a dynamic optimization procedure; but their approach ignores the volatility of revenues for diﬀerent trading strategies.
