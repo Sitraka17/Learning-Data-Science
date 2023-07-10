@@ -3,3 +3,17 @@
 
 Optimal Execution (OE) : 
 Bertsimas and Lo (1998) have deﬁned best execution as the dynamic trading strategy that **provides the minimum expected cost of trading over a ﬁxed period of time,** and they show that in a variety of circumstances one can ﬁnd such a strat- egy by employing a dynamic optimization procedure; but their approach ignores the volatility of revenues for diﬀerent trading strategies.
+
+
+To train good policies with RL lots of experience is needed
+(sample ineiciency)
+I Limit order books (LOBs) are a widespread market
+mechanism relevant for data-rich high frequency finance
+I Intro to LOBs: First, we will look at the limit order books as a
+market mechanism in detail
+I In this context, we will also explain the role and challenge
+faced by a market maker
+I Ways to model LOBs: Then, we will then discuss dierent
+ways to create LOB environments for RL
+I Hands-on RL demo: Finally, focusing on one of these ways, I
+will give an RL demo using mbt_gym (freely available
