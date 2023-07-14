@@ -12,6 +12,7 @@ https://www.effective-mind-control.com/nlp-for-dummies.html
 The most usefull site ever: https://developers.google.com/machine-learning/guides/text-classification
 
 
+Kaggle's NLP course: https://www.kaggle.com/code/jhoward/getting-started-with-nlp-for-absolute-beginners
 
 
 ![alt text](https://developers.google.com/static/machine-learning/guides/text-classification/images/Workflow.png)
