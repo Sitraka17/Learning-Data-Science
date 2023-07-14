@@ -1,0 +1,236 @@
+% !TEX TS-program = xelatex
+
+% This is the LaTeX template
+% for "Constructions", a very simple
+% modification of the standard 
+% LaTeX article class. The 
+% main.tex file of this template
+% as well as localstuff.tex
+% can be used without attribution
+% under the public domain CC-0 license.
+% The bibliography style unified.bst
+% is used under the LaTeX Project 
+% Public License v1.3c.
+
+% Note that the file has to be compiled
+% in XeLaTeX! If you work in Overleaf,
+% XeLaTeX should already be selected 
+% (you can check this by taking a look at
+% Menu > Compiler). Some LaTeX editors
+% will also recognize the correct
+% compiler automatically because of
+% the "magic command" at the beginning
+% of this script.
+
+% to keep the present file readable,
+% packages & commands have been relocated
+% to localstuff.tex:
+\input{localstuff}
+
+
+% For the **running head**, please enter a 
+% short title of the paper as well as 
+% the name/s of the author/s here (for
+% papers with more than 2 authors,
+% use First Author et al.). The full
+% title and the full list of authors and
+% affiliations is to be entered below (see
+% "Insert title and author/s").
+
+\fancyhead[LO]{Author 1 \& Author 2}
+\fancyhead[RE]{Short title}
+\fancyhead[RO, LE]{\thepage}
+
+% Please enter the corresponding author(s) here:
+\newcommand{\correspondingauthor}[1]{Random Author, University of Somewhere, random.author@uni-somewhere.edu}
+
+
+% if you want to customize the
+% hyphenation of individual words,
+% you can do so here. This can be
+% particularly helpful if you get
+% the notorious "overfull hbox"
+% error.
+
+\hyphenation{
+    hy-phe-na-tion
+    num-bered
+}
+
+\raggedbottom
+\begin{document}
+
+
+% make sure that first page doesn't
+% have running heads:
+\thispagestyle{plain}
+
+% insert title and author/s
+\begin{flushright}
+\small{\textit{Constructions}  \volume \ (\the\year)}
+
+\small{doi 10.24338/cons-xxx}
+
+\end{flushright}
+
+\vspace{2pt}
+\begin{center}
+    \LARGE\headingfont{\textbf{Constructing a paper: \linebreak The article template for "Constructions"}}
+\end{center}
+
+\begin{center}
+\vspace{4pt}
+\large
+    Some Author\textsuperscript{1}, Another Author\textsuperscript{2} \& Yet Another Author\textsuperscript{2}
+    
+\small
+   \textsuperscript{1} University of Somewhere \textsuperscript{2} Random University 
+
+\end{center}
+
+
+
+\begin{small}
+\begin{center}
+\vspace{9pt}
+\textbf{Abstract}    
+\end{center}
+
+\begin{adjustwidth}{20pt}{20pt}
+\small \noindent This the article template for the journal ``Constructions". Its goal is to make it as easy as possible for authors to typeset their papers in \LaTeX. For users with limited \LaTeX \  experience, we recommend using Overleaf (\url{https://www.overleaf.com}). To start working on your paper in Overleaf, just make a copy of this template and replace the text of this tutorial by the text of your paper.
+\end{adjustwidth}
+
+
+\end{small}
+
+
+
+
+\vspace{10pt}
+\section{Basics}\label{Sec:Introduction}
+``Constructions" is a platinum open-access journal: We do not charge author processing fees, and we do not pursue any commercial interests. However, this also means that the journal is run on a voluntary basis, and we do not have money to pay professional typesetters. We therefore have to ask the authors to do the typesetting of their papers. To facilitate this task as much as possible, we provide this \LaTeX \ template. Just open the template in the \LaTeX \  editor of your choice and start working in the document main.tex by replacing the text of this short tutorial with the text of your own paper. You can just work as would in a simple text editor; if you have never worked with \LaTeX, there are a few commands you should know:
+
+\begin{itemize}
+    \item If you want to use \textit{italics}, you have to wrap the text to be italicized in the command \verb!\textit{...}!
+    \item If you want to use \textbf{boldface}, use the command \verb!\textbf{...}!
+    \item For adding `single' and ``double" quotes, please use a single or double grave accent (\verb!`! or \verb!``!) for opening the quote and the apostrophe \verb!'! or the regular double quote \verb!"! to close it.
+    \item To start a new \textbf{section}, use \verb!\section{...}! If the section should not be numbered (which is usually the case for Acknowledgment sections and the references), add an asterisk: \verb!\section*{...}!
+    \item If you want to make a bulletpoint list like the one you're reading right now, use:
+    \begin{verbatim}
+        \begin{itemize}
+            \item first item
+            \item second item
+            \item etc.
+        \end{itemize}
+    \end{verbatim}
+    \item For linguistic examples, see below.
+    \item Footnotes can be inserted using \verb!\footnote{...}!.\footnote{Duh!}
+    \item \LaTeX \ hyphenates automatically, and usually the hyphenation feature is pretty good. If you want to override the default hyphenation of a word, add it to the \verb!\hyphenation{}!\ word list towards the beginning of the main.tex document -- that's what I've done for the word \textit{numb-ered} a few bulletpoints above (just for expository reasons of course, not because I want to change English hyphenation rules...). If you have very long words, I recommend to insert a \textbf{soft hyphen}, i.e. a hyphen that is not shown unless there is a line break, as\-in\-this\-very\-long\-word. You can insert a soft hyphen by typing \verb!\-!, e.g. \verb!hy\-phe\-na\-tion!.
+    
+\end{itemize}
+
+
+\section{Linguistic examples}
+
+For linguistic examples, we use the ``linguex" package. The package is relatively easy to use, see the manual for examples: \url{https://ftp.rrze.uni-erlangen.de/ctan/macros/latex/contrib/linguex/doc/linguex-doc.pdf}. Just insert \verb!\ex.! to start an example, and use \verb!\\! for line breaks. You can refer to examples like example \ref{ex:myExample} below by adding labels to the individual examples using the \verb!\label{...}! command and referring to the label you chose via \verb!\ref{the_label}!. In this way, you can also refer to sub-examples like \ref{ex:myExamplea} and \ref{ex:myExampleb}.
+ 
+\ex. \label{ex:myExample}
+ \ag. \textit{Das} \textit{ist} \textit{ein} \textit{Beispiel}. \\
+  This is an example. \\
+  `This is an example.' \label{ex:myExamplea}
+  \bg. \textit{Ein} \textit{Beispiel} \textit{ist} \textit{das}. \\
+  an example is this \\
+  `This is an example.' \label{ex:myExampleb}
+
+
+\section{Figures}
+
+Inserting figures is easy, while it can be a bit harder to place them where you would like to see them. The \href{https://www.overleaf.com/learn/latex/Inserting_Images}{Overleaf tutorial} provides a good starter. Usually you can just work with the code in this template. Please make sure that you have high-resolution figures (at least 300 dpi). Like the linguistic examples discussed above, you can label figures and then refer to them using \verb!\ref{the_label}! or, if you want to add the word ``Figure" (or ``Table", in the case of tables) automatically, \verb!\autoref{the_label}!.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Figure2.png}
+    \caption{A sample figure}
+    \label{fig:my_first_figure}
+\end{figure}
+
+\noindent The \href{https://ftp.tu-chemnitz.de/pub/tex/macros/latex/contrib/float/float.pdf}{float package} can be used to customize the position of figures and tables. For example, \autoref{fig:my_first_figure} and \autoref{fig:my_second_figure} are forced to appear at a specific position in the text using the \verb![H]! command. If there is no reason to position a figure or table at a specific point in the text, you can also use a less strict configuration and let \LaTeX \  choose the position automatically. If you use \verb![H]! and start a new paragraph afterwards, please make sure to start the paragraph with the command \verb!\noindent! to avoid indentation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/fathersandsons4.png}
+    \caption{Another sample figure}
+    \label{fig:my_second_figure}
+\end{figure}
+
+\newpage
+
+\section{Tables}
+
+Adding tables is, admittedly, one of the more challenging aspects of \LaTeX \ typesetting. Luckily, there are a few resources that help you generate tables, such as \url{https://www.tablesgenerator.com/}. 
+
+\begin{table}[H]
+    \sffamily \begin{tabularx}{\textwidth}{ | L | L | }
+    \hline
+         bla & blubb  \\
+         \hline
+         blah & blub \\
+         \hline
+    \end{tabularx}
+    \caption{A very simple table}
+    \label{tab:my_first_table}
+\end{table}
+
+\noindent I recommend to use the \href{https://ctan.org/search?phrase=tabularx}{tabularx} package, which is a bit more complicated to use than the normal ``tabular" environment, but it gives you more flexibility in customizing the tables, and makes it easier to print it in text width. In the localstuff.tex file, I have defined the column types L (left-aligned), C (centered), and R (right-aligned) so you don't have to use the full commands that tabularx usually requires. In the simplest case, therefore, constructing a table is as easy as in the source code of \autoref{tab:my_first_table}. For more elaborate tables in which some rows and columns are merged, check the source code of \autoref{tab:my_complicated_table}.
+
+
+\begin{table}[H]
+    
+    \begin{tabularx}{1\textwidth}{| L | L |R |}
+    \hline
+         \rowcolor[gray]{.9} Col1 & Col2 & Col3 \\
+        \hline
+        blubb &  blibb & 2 \\
+        \hline
+        \multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+1\arrayrulewidth\raggedright\relax}X |}{ Lorem ipsum dolor sit amet, } & bla\\\hline
+        \rowcolor[gray]{.8} \multicolumn{3}{|>{\hsize=\dimexpr3\hsize+4\tabcolsep+2\arrayrulewidth\centering\relax}X |}{ Lorem ipsum dolor sit amet, }\\
+        \hline
+        
+bla & blabb & 22 \\
+\hline
+    \end{tabularx}
+    \caption{A more compilcated table}
+    \label{tab:my_complicated_table}
+\end{table}
+
+\normalfont
+
+
+\section{Citations and references}
+
+``Constructions" follows the \href{https://www.linguisticsociety.org/resource/unified-style-sheet}{Unified Style Sheet for Linguistics Journals}. Working with \LaTeX \  and BibTeX, you don't have to do the formatting manually, though. All references you cite should be in the bibliography.bib file in BibTeX format. We strongly recommend using a reference manager like \href{https://www.zotero.org/}{Zotero}. Zotero allows you to copy and paste entries in BibTeX format, thus making it much easier to work with \LaTeX. 
+
+For inserting citations, use \LaTeX's citation syntax:
+
+\begin{itemize}
+    \item Use \verb!\citep{...}! for inserting citations in parantheses, e.g. \citep{Example2}.
+    \item Use \verb!\citet{...}! to insert citations in the format Author/s (Year), as in \citet{Example2}.
+    \item Use \verb!\citeauthor{...}! and \verb!\citeyear{...}! if you just want to cite the author or the year, without parantheses. This can be helpful if you cite something within parantheses (as in this example, see \citeauthor{Example1} \citeyear{Example1}).
+    \item If you want to use a possessive 's in references, you can use the custom command \verb!\citegen{...}! defined in the localstuff.tex file, as in: \citegen{Example1} definition of constructions.
+\end{itemize}
+
+\subsection*{Troubleshooting}
+
+If there are problems with the bibliography, this can have several reasons:
+
+\begin{itemize}
+    \item Some Zotero plugins (like Better BibTeX) change the ``Year" field in the BibTeX entry to ``Date". In this case, you'll have to change all instances of ``Date" to ``Year" in the bibliography file.
+    \item If you want to keep sentence-internal capitals in the citations (e.g. when quoting German titles, such as \citeauthor{Example3} \citeyear{Example3}), make sure that the relevant words are enclosed in curly brackets. If you export the BibTeX entries from Zotero, you usually won't have to worry because it does so automatically.
+\end{itemize}
+
+
+
+\bibliography{bibliography}
+
+\end{document}
