@@ -98,7 +98,8 @@ Principal Component analysis of implied volatility surfaces
 
 24 April 2019: Hans Bühler (JP Morgan): Deep Hedging: from theory to practice
 
-26 March 2019: Mathieu Rosenbaum (Ecole Polytechnique): Ranking the market makers
+26 March 2019: Mathieu Rosenbaum (Ecole Polytechnique): Ranking the market makers 
+http://www.cmap.polytechnique.fr/~rosenbaum/
 
 27 Feb 2019: Mourad Berrahoui (Lloyds): Counterparty trading limits revisited
 
