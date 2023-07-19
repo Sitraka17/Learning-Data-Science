@@ -88,7 +88,7 @@ Principal Component analysis of implied volatility surfaces
 
 12 December 2019: Antoine Savine (Danske Bank): Deep analytics for risk management
 
-21 November 2019:  Pierre Henry-Labordere (SocGen) Some Applications of Machine Learning in Quantitative Finance
+21 November 2019:  Pierre Henry-Labordere (SocGen) Some Applications of Machine Learning in Quantitative Finance ¬ Bro was elected the best  Quant of the year 2023
 
 17 October 2019: Matthias Arsndorf (JP Morgan): Credit Value adjustments for central clearing
 
