@@ -1,4 +1,4 @@
-Frontiers in Quantitative Finance Seminar
+# Frontiers in Quantitative Finance Seminar
 Frontiers in Quantitative Finance is a monthly seminar series which brings novel research on quantitative modelling in finance and risk management to a broad audience of academic researchers, industry professionals and regulators.  
 
 The  seminar provides a forum for academics and practitioners to discuss and debate new ideas in the modelling, management and regulation of financial risks and an opportunity for networking. Students, academics and professionals from the finance and government sector are welcome to attend the seminar and the reception. Attendance is free of charge but requires prior online registration.
