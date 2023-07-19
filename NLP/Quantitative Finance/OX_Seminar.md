@@ -16,7 +16,7 @@ The Momentum Transformer: An Intelligent and Interpretable Deep Learning Trading
 Past events
 
 1 June 2023: Kevin Webster (Columbia University)
-Disentangling alpha from impact using causal machine learning
+Disentangling alpha from impact using causal machine learning *** ¬ Linkedin alpha Beta
 
  
 
