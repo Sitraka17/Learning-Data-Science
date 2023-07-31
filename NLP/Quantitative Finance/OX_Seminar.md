@@ -11,7 +11,7 @@ To obtain more information and to register please click on the seminar title.
 
 6 July 2023:  Stefan Zohren (Oxford Man Institute)
 
-[The Momentum Transformer: An Intelligent and Interpretable Deep Learning Trading Strategy](https://github.com/kieranjwood/trading-momentum-transformer)
+(The Momentum Transformer: An Intelligent and Interpretable Deep Learning Trading Strategy)[https://github.com/kieranjwood/trading-momentum-transformer]
 
 Past events
 
