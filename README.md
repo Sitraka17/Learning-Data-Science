@@ -10,7 +10,6 @@ Using the state of the art packages
 To become a great Data Scientist some skills are required:
 
 >I . Mathematics especially Statistics and Probability
-
 >II . Python & R
 
 >III . SQL
