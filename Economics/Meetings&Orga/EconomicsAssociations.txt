@@ -1,0 +1,18 @@
+# Define the associations and their details
+US_Econ_Associations = [
+    ["American Economic Association (AEA)", "Prominent economics association in the US"],
+    ["National Association for Business Economics (NABE)", "Professional association for business economists"],
+    ["Association for Social Economics (ASE)", "Focuses on the study of social economics"],
+    ["Southern Economic Association (SEA)", "Regional association serving the southern US"],
+    ["Western Economic Association International (WEAI)", "Regional association for western US"],
+    ["Eastern Economic Association (EEA)", "Regional association covering the eastern US"],
+    ["Midwest Economics Association (MEA)", "Focuses on the Midwest region of the US"],
+    ["National Economic Association (NEA)", "Focuses on economic issues of African Americans and people of color"],
+    ["Industrial Organization Society (IOS)", "Focuses on the field of industrial organization"],
+]
+for association in associations:
+    print(association)
+#AEA is the most famous :p
+
+
+
