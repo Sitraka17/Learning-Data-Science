@@ -11,7 +11,8 @@ income = np.array([30000, 40000, 50000, 60000, 70000, 80000])
 education_years = sm.add_constant(education_years)
 
 # Fit the regression model
-model = sm.OLS(income, education_years).fit()
+model = sm.OLS(income, education_years).fit() #OLS is life. Seriously. 
+
 
 # Print the summary statistics
 print(model.summary())
