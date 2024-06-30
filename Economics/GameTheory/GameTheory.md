@@ -54,3 +54,7 @@ Tit for Tat with 10% more forgiveness can break echo effects and perform well in
 Cooperation and gradual disarmament led to resolution of conflict.
 - The US and Soviet Union reduced their nuclear stockpiles from late '80s onwards through gradual disarmament.
 - Research on strategies for cooperation and conflict resolution continue, emphasizing the importance of being nice, forgiving, but not a pushover.
+
+
+Writting Medium out of it. 
+
