@@ -1,4 +1,4 @@
-#needs to be refreshed 
+#needs to be refreshed for 2024
 soupe_obj = BeautifulSoup(html_obj, 'html.parser')
 
 for spans in soup.findAll('span', attrs={'id' : 'productTitle'}) :
