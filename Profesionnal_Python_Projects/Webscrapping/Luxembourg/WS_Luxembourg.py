@@ -1,3 +1,4 @@
+#needs to be refreshed 
 soupe_obj = BeautifulSoup(html_obj, 'html.parser')
 
 for spans in soup.findAll('span', attrs={'id' : 'productTitle'}) :
