@@ -1,90 +1,59 @@
 Formation qui a l'air sympa: 
 https://www.francecompetences.fr/recherche/rncp/37579/
 
-Les Ingénieurs informaticiens certifiés de Polytech Marseille assurent les activités suivantes :
+# Ingénieurs Informaticiens 
 
-Analyse et formulation de besoins du client liés à des problématiques techniques complexes nécessitant un traitement informatique
+## Activités principales
 
-Résolution de problématiques liées à la science des données et la réalité mixte
+Les ingénieurs informaticiens certifiés de Polytech Marseille assurent les missions suivantes :
 
-Rédaction d’un cahier des charges
+- **Analyse et formulation des besoins client** liés à des problématiques techniques complexes nécessitant des solutions informatiques.
+- **Résolution de problématiques** associées à la science des données et à la réalité mixte.
+- **Rédaction de cahiers des charges** adaptés aux besoins techniques et fonctionnels.
+- **Conception et développement** de produits, systèmes, études et processus automatisés.
+- **Définition de méthodes et techniques** de valorisation et de mise en œuvre des résultats de recherche en informatique.
+- **Optimisation et organisation de solutions techniques**, notamment en termes de faisabilité, capacité, fiabilité, rentabilité et méthodes de développement logiciel.
+- **Supervision du déploiement, du fonctionnement et de la maintenance** des solutions logicielles développées.
+- **Suivi du cycle de vie d'un logiciel**, de sa conception à sa commercialisation, en lien avec la stratégie commerciale et marketing de l'entreprise.
+- **Intégration des impératifs de fiabilité, sécurité, environnement, qualité, coûts et délais** dans toutes les phases du projet.
+- **Management et coordination de projets**, équipes, services ou départements, avec gestion de budgets.
+- **Formation des utilisateurs** à l’utilisation des solutions informatiques développées.
 
-Conception et développement de produits, systèmes, études et processus automatisés
+## Compétences attestées
 
-Définir des moyens, des méthodes et techniques de valorisation et de mise en œuvre des résultats de recherche dans le domaine informatique.
+Les ingénieurs certifiés possèdent les compétences suivantes :
 
-Concevoir, optimiser et organiser l'ensemble des solutions techniques (faisabilité, capacité, fiabilité, rentabilité) et des méthodes de développement logiciel.
+- **Analyse de situations techniques complexes** en vue d’un traitement informatique.
+- **Identification des besoins réels du client** à travers des ateliers et des réunions dédiées.
+- **Formalisation des besoins et estimation de la valeur métier** (ROI).
+- **Mobilisation des connaissances en mathématiques appliquées** et maîtrise des outils et méthodes d’analyse informatique.
+- **Maîtrise des principaux langages et paradigmes de programmation** pour le développement d'applications, de composants logiciels ou de systèmes.
+- **Compréhension des architectures systèmes et réseaux** et gestion de leurs interactions avec les logiciels.
+- **Acquisition, stockage, exploitation et sécurisation de l'information**.
+- **Conception de produits, systèmes, études et processus informatiques**.
+- **Modélisation de systèmes informatiques** pour évaluer leur comportement théorique.
+- **Choix d'outils et méthodes adéquats** dans le cadre du cycle de développement logiciel.
+- **Qualification et test de solutions logicielles**.
+- **Management des projets de développement digital**, en tenant compte des enjeux économiques, de la qualité, de la compétitivité et de la productivité.
+- **Gestion proactive des risques liés aux projets** (avancement, déploiement, usages).
+- **Développement et déploiement de solutions performantes** et adaptées aux besoins des utilisateurs.
+- **Validation des procédures de test et de déploiement**.
+- **Adoption d'une approche responsable en ingénierie informatique**, prenant en compte les enjeux sociétaux et environnementaux.
 
-Superviser le déploiement, le fonctionnement et la maintenance des solutions logicielles.
+## Attitudes professionnelles
 
-Réaliser le suivi d’un logiciel, de sa conception à sa commercialisation, selon la stratégie commerciale et marketing de l'entreprise.
+- **Entrepreneuriat et innovation**, que ce soit dans le cadre de projets personnels ou dans l’initiative d’entreprises.
+- **Auto-évaluation et développement continu des compétences** pour orienter ses choix professionnels.
+- **Prise en compte des enjeux de développement durable** et des besoins de la société.
+- **Respect des valeurs éthiques, de la sécurité et de la santé au travail**.
+- **Interaction dans des environnements professionnels multidisciplinaires**.
+- **Capacité d'intégration, d’animation et d’évolution au sein d'une organisation**.
+- **Esprit d'équipe, leadership et engagement**.
+- **Responsabilité dans le management de projets et la maîtrise d’ouvrage**.
+- **Communication efficace** avec des spécialistes et non-spécialistes, et adaptation aux demandes des interlocuteurs.
+- **Compétence en langues étrangères et ouverture culturelle**, favorisant l’adaptation à des contextes internationaux.
 
-Intégrer les impératifs de fiabilité, sécurité, environnement, qualité, coûts, délais.
+## Modalités d’évaluation
 
-Manager, superviser et coordonner un projet, une équipe, un service ou un département et peut gérer un budget.
+Les compétences et les savoir-faire des ingénieurs sont évalués à travers des examens, projets, études de cas, ainsi que leur capacité à mener des missions en entreprise.
 
-Former les utilisateurs à l’usage des solutions informatiques développées
-
- 
-
-Compétences attestées :
-
-Analyser des situations ou des problématiques techniques complexes, en vue de leur traitement informatique
-
-Identifier le véritable besoin du client avec les moyens appropriés (animant des ateliers, des réunions dédiées, etc.)
-
-Formaliser les besoins et Estimation de la valeur métier (ROI)
-
-Mobiliser les connaissances des méthodes et outils mathématiques utilisés en informatique, la capacité d'analyse et de synthèse qui leur est associée.
-
-Maitriser les principaux langages et paradigmes de programmation utilisés pour développer une application, un composant logiciel ou un programme système.
-
-Comprendre l’architecture et le fonctionnement des systèmes d'exploitation et des réseaux, gérer et administrer leurs interactions avec les systèmes et logiciels.
-
-Maitriser l'acquisition, le stockage, l'exploitation et la sécurisation de l'information
-
-Concevoir des produits, systèmes, études et processus informatiques
-
-Modéliser des systèmes informatiques afin d'étudier leur comportement théorique.
-
-Modéliser des solutions logicielles en partant de spécifications.
-
-Choisir les outils et les méthodes adéquats dans le cadre du cycle de développement logiciels.
-
-Qualifier la solution (tests)
-
-Manager la réalisation, la mise en œuvre ou la conduite de produits, systèmes, services et procédés de solutions digitales
-
-Prendre en compte les enjeux économiques, le respect de la qualité, la compétitivité et la productivité, les exigences commerciales, l'intelligence économique.
-
-Prévenir les risques du projet (avancement, déploiement, usages, etc.)
-
-Développer (Implémenter) la solution appropriée (performantes, etc.)
-
-Vérifier les procédures de tests et de validation
-
-Déployer la solution
-
-Agir en ingénieur responsable dans le domaine informatique
-
-Entreprendre et innover, dans le cadre de projets personnels ou par l’initiative et l’implication au sein de l’entreprise dans des projets entrepreneuriaux
-
-S’auto-évaluer pour cultiver ses compétences et orienter ses choix professionnels
-
-Prendre en compte les enjeux environnementaux et sociétaux du développement durable
-
-Prendre en compte les enjeux et les besoins de la société.
-
-Considérer les enjeux de relation au travail, d'éthique, de sécurité et de santé au travail.
-
-Interagir dans un environnement professionnel multi-disciplinaires
-
-S’intégrer dans une organisation, en l'animant et en la faisant évoluer
-
-Avoir l'esprit d'équipe, d'engagement et de leadership
-
-Exercer des responsabilités contenant le management de projets et la maîtrise d'ouvrage
-
-Communiquer avec des spécialistes comme avec des non-spécialistes et réagir à leurs demandes
-
-Travailler dans un contexte international : maîtrise d'une ou plusieurs langues étrangères, ouverture culturelle associée, adaptation aux contextes internationaux.
