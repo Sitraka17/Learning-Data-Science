@@ -53,7 +53,7 @@ def main():
         print(f"An error occurred: {str(e)}")
     
     finally:
-        # Always quit the driver
+        # Always quit the driver otherwise perma ban lol
         if 'driver' in locals():
             driver.quit()
 
