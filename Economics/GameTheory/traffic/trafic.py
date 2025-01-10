@@ -39,3 +39,4 @@ ani = FuncAnimation(fig, update, frames=200, interval=50)
 
 # Save or show the animation
 plt.show()
+
