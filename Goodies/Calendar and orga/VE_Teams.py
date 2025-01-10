@@ -17,4 +17,5 @@ list(chunks(n, 3))
 
 #Also
 lst = [("a", 5, 6), ("b", 2, 4), ("a", 2, 5), ("c", 2, 6)]
+print(lst)
 
