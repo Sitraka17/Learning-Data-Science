@@ -93,3 +93,4 @@ plt.show()
 
 # Optional: Save the map
 plt.savefig('meuse_river_map.png', dpi=300, bbox_inches='tight')
+#dude it needs to be enhanced 
