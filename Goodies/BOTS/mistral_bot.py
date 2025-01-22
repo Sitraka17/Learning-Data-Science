@@ -59,10 +59,10 @@ def main():
             "How to become a pro in IT"
         ]
 
-        # Perform each search
+        # Perform each search with a 3-second delay between them
         for query in queries:
             search_google(driver, query)
-            time.sleep(2)  # Wait before the next search
+            time.sleep(3)  # Wait for 3 seconds before the next search
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
