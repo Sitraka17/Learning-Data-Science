@@ -3,7 +3,7 @@ import string
 
 def generate_strong_password(length=12):
     """
-    Generate a strong random password.
+    Generate a strong random password. Welcome23011972025*
     
     Parameters:
     length (int): The length of the password. Default is 12.
